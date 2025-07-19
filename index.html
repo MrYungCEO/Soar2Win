@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soar2Win Coaching | Leadership Coaching for Ambitious Women</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Soar2Win Coaching | Leadership Coaching for Ambitious Women">
+    <meta name="description" content="Executive & Leadership Coaching by Renee Jackson-Smith. Unlock your leadership potential and thrive with certified ICF coaching.">
+    <meta name="keywords" content="leadership coaching, executive coaching, women in leadership, career development, professional growth">
+    <meta name="author" content="Renee Jackson-Smith">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soar2win.com/">
+    <meta property="og:title" content="Soar2Win Coaching | Leadership Coaching for Ambitious Women">
+    <meta property="og:description" content="Executive & Leadership Coaching by Renee Jackson-Smith. Unlock your leadership potential and thrive with certified ICF coaching.">
+    <meta property="og:image" content="https://i.ibb.co/fzQqdbv9/OIP.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://soar2win.com/">
+    <meta property="twitter:title" content="Soar2Win Coaching | Leadership Coaching for Ambitious Women">
+    <meta property="twitter:description" content="Executive & Leadership Coaching by Renee Jackson-Smith. Unlock your leadership potential and thrive with certified ICF coaching.">
+    <meta property="twitter:image" content="https://i.ibb.co/fzQqdbv9/OIP.jpg">
+    
+    <!-- Theme Color for Browser -->
+    <meta name="theme-color" content="#FF7F50">
+    
+    <!-- Stylesheets and Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        /* Scroll reveal animation classes */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #E9967A 0%, #F5DEB3 100%); /* Dark salmon to wheat - earthy tones */
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #E9967A;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        /* Navbar glass morphism style */
+        .navbar {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hero image wrapper for slide-in effect */
+        .hero-image-wrapper {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+        
+        /* Hero image for float effect */
+        .hero-image {
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Entrance Animations */
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-slide-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* New Animations for Hero Section */
+        .animate-swipe-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            animation: swipeLeft 1s ease-out forwards;
+        }
+
+        .animate-slide-right {
+            opacity: 0;
+            transform: translateX(100px);
+            animation: slideRight 1s ease-out forwards;
+        }
+
+        @keyframes swipeLeft {
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInLeft {
+            0% { opacity: 0; transform: translateX(-100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Advanced Scroll Animations */
+        .service-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        
+        .service-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stagger-reveal {
+            opacity: 0;
+        }
+        
+        .reveal-mask {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reveal-mask .reveal-content {
+            transform: translateY(100%);
+        }
+        
+        .services-title-line {
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        .services-title-line.animated {
+            width: 80px;
+        }
+        
+        /* 3D Tilt Effect */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* Parallax Elements */
+        .parallax-bg {
+            will-change: transform;
+        }
+        
+        /* Hero Image Hover Effect */
+        .hero-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image-container img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hero-image-container:hover img {
+            transform: scale(0.95);
+        }
+
+        /* Button Hover Effects */
+        .hero-button {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .hero-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .hero-button:hover::before {
+            left: 100%;
+            transition: 0.5s;
+        }
+
+        /* New styles for abstract shape mask */
+        .hero-masked-bg {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #E9967A 0%, #F5DEB3 100%);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        .hero-masked-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white; /* White background for the unmasked part */
+            /* Abstract shape mask - splitting down the middle */
+            clip-path: polygon(0 0, 75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%); /* Abstract cloud-like shape */
+            z-index: 1;
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 2; /* Ensure content is above the mask */
+        }
+        /* Decorative elements */
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            filter: blur(40px);
+            z-index: 0;
+            animation: pulse 6s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.1); opacity: 0.7; }
+        }
+        
+        .floating-shape {
+            position: absolute;
+            opacity: 0.6;
+            animation: floatShape 15s ease-in-out infinite alternate;
+        }
+        
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(10px, 15px) rotate(5deg); }
+            66% { transform: translate(-5px, 10px) rotate(-3deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+        
+        /* Custom ping animation for button */
+        @keyframes ping-slow {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+        
+        .animate-ping-slow {
+            animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        
+        /* Custom gradient pulse animation for heading */
+        @keyframes gradient-pulse {
+            0% { background-position: 0% 50%; opacity: 0.9; transform: scale(1); }
+            25% { background-position: 50% 50%; opacity: 1; transform: scale(1.02); }
+            50% { background-position: 100% 50%; opacity: 1; transform: scale(1.05); }
+            75% { background-position: 50% 50%; opacity: 1; transform: scale(1.02); }
+            100% { background-position: 0% 50%; opacity: 0.9; transform: scale(1); }
+        }
+        
+        .animate-gradient-pulse {
+            background-size: 300% auto;
+            animation: gradient-pulse 6s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #E9967A 0%, #DEB887 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Animated title with gradient and float effect */
+        .animate-title-gradient {
+            background: linear-gradient(90deg, #FF7F50, #FFA07A, #FF8C00, #E9967A);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 6s ease infinite, title-float 4s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes title-float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Expandable cards styling */
+        .expandable-card .card-content {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+        
+        .expandable-card.active .card-content {
+            max-height: 1000px; /* Very large value to accommodate any content */
+            opacity: 1;
+            padding-top: 0.75rem;
+        }
+        
+        .expandable-card.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .fancy-border {
+            position: relative;
+        }
+        
+        .fancy-border::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #E9967A, #DEB887, transparent);
+        }
+    </style>
+</head>
+<body class="bg-orange-50">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Navigation -->
+    <nav class="navbar bg-white bg-opacity-70 backdrop-blur-md fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-[#E9967A] font-bold text-xl flex items-center"><i class="fa fa-arrow-up text-black mr-1" style="display: inline-block; transform: rotate(45deg);"></i>Soar<span class="text-black">2</span>Win</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">About</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Services</a>
+                    <a href="#why" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Why Coaching</a>
+                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Testimonials</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Contact</a>
+                    <a href="#book" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:shadow-lg transition duration-300 open-discovery-call">
+                        Book a Call
+                    </a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">About</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">Services</a>
+                <a href="#why" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">Why Coaching</a>
+                <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">Testimonials</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">Contact</a>
+                <a href="#book" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-[#0056b3] hover:bg-[#007bff]">
+                    Book a Call
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+        <!-- Decorative elements removed -->
+        <div class="floating-shape top-1/4 left-1/3">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 0L37.8 22.2L60 30L37.8 37.8L30 60L22.2 37.8L0 30L22.2 22.2L30 0Z" fill="#E9967A" fill-opacity="0.5"/>
+            </svg>
+        </div>
+        <div class="floating-shape bottom-1/4 right-1/4" style="animation-delay: 2s;">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="20" fill="#DEB887" fill-opacity="0.5"/>
+            </svg>
+        </div>
+        
+        <!-- Background gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-white via-orange-50 to-amber-50 opacity-90"></div>
+
+        <!-- Content Wrapper -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-16 md:py-24">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <!-- Image Column (Left) -->
+                <div class="flex justify-center lg:justify-end mb-12 lg:mb-0">
+                    <div class="relative">
+                        <!-- Decorative frame removed -->
+                        
+                        <div class="hero-image-wrapper">
+                            <img src="https://i.ibb.co/1cTrrWX/Untitled-design-1.png" 
+                                 alt="Renee Jackson-Smith" 
+                                 class="hero-image w-full h-full object-cover relative z-10">
+                        </div>
+                        
+                        <!-- Decorative elements around image -->
+                        <div class="absolute -top-6 -right-6 w-12 h-12 rounded-full bg-amber-200 animate-pulse" style="animation-duration: 3s;"></div>
+                        <div class="absolute -bottom-8 -left-4 w-16 h-16 rounded-full bg-orange-200 animate-pulse" style="animation-duration: 4s;"></div>
+                    </div>
+                </div>
+
+                <!-- Text Content Column (Right) -->
+                <div class="text-center lg:text-left text-gray-900 animate-slide-right" style="animation-delay: 0.7s;">
+                    <span class="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 text-orange-800 text-sm font-medium mb-6 animate-pulse">Certified Leadership Life Coach</span>
+                    
+                    <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="fancy-border inline-block mb-2">Unlock</span> Your <span class="text-gradient">Leadership</span> Potential & <span class="text-gradient">Thrive</span>
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl mb-8 opacity-90 font-light">
+                        Executive & Leadership Coaching by <br class="hidden md:block">Renee Jackson‑Smith, <br class="hidden md:block">Global IT Leader & Certified ICF Coach
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
+                        <a href="#book" class="px-8 py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold rounded-full hover:shadow-lg transition duration-300 text-center hero-button open-discovery-call">
+                            Book a Discovery Call
+                        </a>
+                        <a href="#" class="px-8 py-3 border-2 border-orange-500 text-orange-600 font-semibold rounded-full hover:bg-orange-500 hover:text-white transition duration-300 text-center hero-button open-coffee-chat">
+                            Schedule a Coffee Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-playfair">
+                    The Coach Behind <span class="text-gradient">Soar2Win</span>
+                </h2>
+                <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-500">
+                    Empowering ambitious women to overcome self-doubt and reach their full potential
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Vision Section -->
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 p-8 rounded-2xl shadow-lg transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 scroll-reveal">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 font-playfair">My Vision</h3>
+                    <div class="space-y-4">
+                        <p class="text-gray-700">
+                            As a committed executive and leadership coach, I focus on helping women who have faced challenges in their lives or careers. I am passionate about helping them overcome their fear of failure and self-doubt, so they can reach their full potential and achieve unlimited success.
+                        </p>
+                        <p class="text-gray-700">
+                            My goal is to empower ambitious women to overcome self-doubt and limitations, building their confidence and achieving success. I strive to equip women with the tools they need to face challenges, discover their true voices, and unlock their full potential.
+                        </p>
+                        <p class="text-gray-700">
+                            I am passionate is to not only see other women advance in their careers, but to thrive in leadership roles with authenticity and strength. I believe every woman has unique strengths, and through personalized coaching, I aim to help each client tap into her potential and achieve her career goals.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Professional Background -->
+                <div class="space-y-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-orange-100 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 scroll-reveal">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4 font-playfair">Professional Background</h3>
+                        <p class="text-gray-700">
+                            Renee's career in the corporate world has been defined by her rise through different leadership positions, giving her valuable insights into the complexities of the professional environment.
+                        </p>
+                        <p class="text-gray-700 mt-4">
+                            With a strong foundation in executive coaching, leadership, and talent development, Renee skillfully combines her real-world experience with her coaching methods. This allows her to effectively guide others in their professional journeys.
+                        </p>
+                    </div>
+                    
+                    <!-- Coaching Model -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-amber-100 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 scroll-reveal">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4 font-playfair">Our Coaching Model</h3>
+                        <p class="text-gray-700 mb-4">
+                            We utilize various coaching models that works best for our clients to guide productive and goal-oriented sessions such as:
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>
+                                <span class="font-medium">CLEAR model</span> offers a multi-session approach that builds on five stages: Contract, Listening, Exploration, Action, and Review
+                            </li>
+                            <li>
+                                <span class="font-medium">GROW model</span> simplifies coaching by focusing on four core areas: Goal Setting, Reality, Options & Will
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                <div class="mt-4 h-1 w-20 bg-[#E9967A] mx-auto"></div>
+            </div>
+            
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                <div class="mb-8 lg:mb-0 flex justify-center">
+                    <div class="w-[60%] relative">
+                        <img src="https://tse1.mm.bing.net/th/id/OIP.XIPY21MIBGZfqAune5f5cwHaHa?r=0&pid=Api" 
+                             alt="Renee Jackson-Smith" 
+                             class="rounded-lg shadow-lg w-full hero-image animate-float">
+                        <!-- Decorative elements around image -->
+                        <div class="absolute -top-4 -right-4 w-8 h-8 rounded-full bg-amber-200 animate-pulse" style="animation-duration: 3s;"></div>
+                        <div class="absolute -bottom-6 -left-3 w-12 h-12 rounded-full bg-orange-200 animate-pulse" style="animation-duration: 4s;"></div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 animate-title-gradient">Renee Jackson‑Smith</h3>
+                    <p class="text-gray-600 mb-6">
+                        As a Global IT Leader with extensive corporate leadership experience and a Certified Executive & Leadership Coach (ICF Credentialed), I'm passionate about empowering women to overcome self-doubt and fear of failure.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        My mission is to guide women in transforming challenges into leadership opportunities through proven coaching methodologies.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">Key Tools & Methodologies:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-amber-100 p-4 rounded-lg expandable-card cursor-pointer transition-all duration-300 hover:shadow-lg">
+                                <div class="card-header flex justify-between items-center">
+                                    <h5 class="font-semibold text-[#E9967A]">CLEAR Model</h5>
+                                    <i class="fas fa-chevron-down text-[#E9967A] transition-transform duration-300"></i>
+                                </div>
+                                <div class="card-content overflow-hidden transition-all duration-300 p-0">
+                                    <div class="pt-3 pb-2">
+                                        <p class="text-sm text-gray-600">Contract, Listening, Exploration, Action, Review</p>
+                                        <p class="text-sm text-gray-600 mt-2">A structured approach to coaching conversations that ensures clarity and results.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-amber-100 p-4 rounded-lg expandable-card cursor-pointer transition-all duration-300 hover:shadow-lg">
+                                <div class="card-header flex justify-between items-center">
+                                    <h5 class="font-semibold text-[#E9967A]">GROW Model</h5>
+                                    <i class="fas fa-chevron-down text-[#E9967A] transition-transform duration-300"></i>
+                                </div>
+                                <div class="card-content overflow-hidden transition-all duration-300 p-0">
+                                    <div class="pt-3 pb-2">
+                                        <p class="text-sm text-gray-600">Goal, Reality, Options, Will</p>
+                                        <p class="text-sm text-gray-600 mt-2">A powerful framework for problem-solving and goal-setting in coaching sessions.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:shadow-lg transition duration-300">
+                        Get In Touch
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-orange-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 relative">
+                <div class="absolute inset-0 flex justify-center items-center opacity-10">
+                    <div class="w-40 h-40 rounded-full bg-amber-300 animate-ping-slow"></div>
+                </div>
+                <h2 class="text-3xl font-extrabold sm:text-5xl relative">
+                    <span class="bg-gradient-to-r from-orange-500 to-amber-500 text-transparent bg-clip-text animate-gradient-pulse">How You Can</span>
+                    <span class="block mt-1 font-playfair italic">Work With Me</span>
+                </h2>
+                <div class="mt-4 h-1 w-32 bg-gradient-to-r from-orange-500 to-amber-500 mx-auto transform transition-all duration-500 hover:w-48"></div>
+                <p class="mt-6 max-w-2xl text-xl text-gray-600 mx-auto font-light">
+                    Tailored coaching solutions designed for ambitious women leaders
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-t-4 border-amber-300">
+                    <div class="text-[#E9967A] mb-4">
+                        <i class="fas fa-user-tie text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">1:1 Coaching</h3>
+                    <p class="text-gray-600 mb-4">
+                        Personalized executive and leadership coaching focused on confidence building, leadership skills, and personal breakthroughs.
+                    </p>
+                    <a href="#book" class="text-[#E9967A] font-medium hover:text-amber-600 inline-flex items-center">
+                        Learn more
+                        <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-t-4 border-amber-300">
+                    <div class="text-[#E9967A] mb-4">
+                        <i class="fas fa-users text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Group Coaching</h3>
+                    <p class="text-gray-600 mb-4">
+                        Collaborative sessions designed for professional women and emerging leaders to grow together in a supportive environment.
+                    </p>
+                    <a href="#book" class="text-[#E9967A] font-medium hover:text-amber-600 inline-flex items-center">
+                        Learn more
+                        <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-t-4 border-amber-300">
+                    <div class="text-[#E9967A] mb-4">
+                        <i class="fas fa-microphone text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Speaking & Facilitation</h3>
+                    <p class="text-gray-600 mb-4">
+                        Engaging workshops, corporate events, and panel facilitation with a focus on leadership development and empowerment.
+                    </p>
+                    <a href="#book" class="text-[#E9967A] font-medium hover:text-amber-600 inline-flex items-center">
+                        Learn more
+                        <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-t-4 border-amber-300">
+                    <div class="text-[#E9967A] mb-4">
+                        <i class="fas fa-project-diagram text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Strategy Development</h3>
+                    <p class="text-gray-600 mb-4">
+                        Tailored solutions for organizations and partnerships to develop leadership pipelines and coaching cultures.
+                    </p>
+                    <a href="#book" class="text-[#E9967A] font-medium hover:text-[#007bff] inline-flex items-center">
+                        Learn more
+                        <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <div class="relative inline-block group">
+                    <span class="absolute inset-0 rounded-md bg-amber-300 opacity-30 group-hover:opacity-50 animate-ping-slow"></span>
+                    <a href="#book" class="relative inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-[#0056b3] to-[#007bff] hover:from-[#007bff] hover:to-[#0056b3] shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 open-discovery-call">
+                        Book Discovery Call
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Coaching Section -->
+    <section id="why" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                <div class="mb-8 lg:mb-0">
+                    <div class="text-center lg:text-left mb-8 scroll-reveal">
+                        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                            Why Work With a Certified Coach
+                        </h2>
+                        <div class="mt-4 h-1 w-20 bg-[#0056b3]"></div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-orange-500 to-amber-500 text-white">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">ICF Certified</h4>
+                                <p class="mt-1 text-gray-600">
+                                    International Coaching Federation credential ensures you're working with a professionally trained coach.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-orange-500 to-amber-500 text-white">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">Proven Leadership Experience</h4>
+                                <p class="mt-1 text-gray-600">
+                                    Decades of experience in global corporate environments means practical, real-world insights.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-orange-500 to-amber-500 text-white">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">Proven Methodologies</h4>
+                                <p class="mt-1 text-gray-600">
+                                    Coaching frameworks backed by research and proven to deliver transformational results.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-orange-500 to-amber-500 text-white">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">Specialized Focus</h4>
+                                <p class="mt-1 text-gray-600">
+                                    Expertise in helping women of color, professionals, and emerging leaders navigate unique challenges.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                    <a href="#about" class="inline-flex items-center text-[#0056b3] font-medium hover:text-[#007bff]">
+                        More About Me
+                        <i class="fas fa-chevron-right ml-1"></i>
+                    </a>
+                    </div>
+                </div>
+                                
+                <div>
+                    <img src="https://i.ibb.co/fzQqdbv9/OIP.jpg"
+                         class="rounded-lg shadow-xl w-full">
+</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Stories of Transformation
+                </h2>
+                <div class="mt-4 h-1 w-20 bg-[#0056b3] mx-auto"></div>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    Hear from women who've transformed their leadership journey
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md border-l-4 border-amber-300 scroll-reveal">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/32.jpg" alt="">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-sm font-semibold text-gray-900">Sarah Johnson</h4>
+                            <p class="text-xs text-gray-500">Director of Marketing</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-600 italic mb-4">
+                        "Working with Renee gave me the confidence to step into a leadership role I never thought possible. Her coaching helped me find my voice and own my expertise."
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md border-l-4 border-amber-300 scroll-reveal">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-sm font-semibold text-gray-900">Michelle Rodriguez</h4>
+                            <p class="text-xs text-gray-500">Tech Lead</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-600 italic mb-4">
+                        "The CLEAR model Renee uses provided such a structured approach to tackling my leadership challenges. I've implemented strategies that have transformed my team's performance."
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md border-l-4 border-amber-300 scroll-reveal">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-sm font-semibold text-gray-900">Danielle Williams</h4>
+                            <p class="text-xs text-gray-500">Senior Product Manager</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-600 italic mb-4">
+                        "After just 3 months of coaching, I negotiated a promotion with a 25% salary increase. Renee's guidance on communicating my value was game-changing."
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="book" class="py-16 bg-gradient-to-br from-amber-50 to-orange-50 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-10 right-10 w-40 h-40 rounded-full bg-amber-100 opacity-30"></div>
+        <div class="absolute bottom-10 left-10 w-32 h-32 rounded-full bg-orange-100 opacity-40"></div>
+        <div class="floating-shape absolute top-1/3 right-1/4" style="animation-delay: 1s;">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="20" fill="#DEB887" fill-opacity="0.4"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    How We Can Connect
+                </h2>
+                <div class="mt-4 h-1 w-20 bg-[#E9967A] mx-auto"></div>
+                <p class="mt-4 text-lg text-gray-600">
+                    Let's start the conversation about your leadership journey
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Coffee Chat -->
+                <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg border border-amber-100 hover:shadow-xl transition duration-300 scroll-reveal">
+                    <div class="text-center mb-5">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-amber-100 text-[#E9967A]">
+                            <i class="fas fa-coffee text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4 font-playfair">☕ COFFEE CHAT</h3>
+                    <p class="text-gray-600 mb-5 text-center">
+                        A CASUAL INTRO CONVERSATION TO GET TO KNOW EACH OTHER AND SEE IF WE'RE A GOOD FIT.
+                    </p>
+                    <ul class="text-sm text-gray-600 mb-8 space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[#E9967A] mt-1 mr-2"></i>
+                            <span>30-MINUTE INFORMAL VIDEO CALL</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[#E9967A] mt-1 mr-2"></i>
+                            <span>NO PRESSURE - JUST CONVERSATION</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[#E9967A] mt-1 mr-2"></i>
+                            <span>LEARN ABOUT COACHING WITHOUT COMMITMENT</span>
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#0056b3] hover:bg-[#007bff] transition duration-300 uppercase tracking-wide open-coffee-chat">
+                            BOOK COFFEE CHAT
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Discovery Call -->
+                <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg border border-amber-100 hover:shadow-xl transition duration-300 scroll-reveal">
+                    <div class="text-center mb-5">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-amber-100 text-[#E9967A]">
+                            <i class="fas fa-rocket text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4 font-playfair">🚀 DISCOVERY CALL</h3>
+                    <p class="text-gray-600 mb-5 text-center">
+                        AN IN-DEPTH CONVERSATION TO EXPLORE COACHING FIT AND IDENTIFY YOUR GOALS.
+                    </p>
+                    <ul class="text-sm text-gray-600 mb-8 space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[#E9967A] mt-1 mr-2"></i>
+                            <span>60-MINUTE FOCUSED SESSION</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[#E9967A] mt-1 mr-2"></i>
+                            <span>IDENTIFY KEY CHALLENGES AND OPPORTUNITIES</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[#E9967A] mt-1 mr-2"></i>
+                            <span>DETERMINE IF COACHING IS RIGHT FOR YOU</span>
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:shadow-lg transition duration-300 uppercase tracking-wide open-discovery-call">
+                            BOOK DISCOVERY CALL
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gradient-to-br from-white via-orange-50 to-amber-50 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-20 right-10 w-32 h-32 rounded-full bg-amber-100 opacity-50"></div>
+        <div class="absolute bottom-10 left-20 w-48 h-48 rounded-full bg-orange-100 opacity-40"></div>
+        <div class="floating-shape absolute top-1/4 right-1/3" style="animation-delay: 1.5s;">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 0L25.2 14.8L40 20L25.2 25.2L20 40L14.8 25.2L0 20L14.8 14.8L20 0Z" fill="#E9967A" fill-opacity="0.4"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Let's Connect
+                </h2>
+                <div class="mt-4 h-1 w-20 bg-[#E9967A] mx-auto"></div>
+                <p class="mt-4 text-lg text-gray-600">
+                    Have questions or ready to start your coaching journey? Reach out directly.
+                </p>
+            </div>
+            
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12">
+                <div class="mb-8 lg:mb-0">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 text-white shadow-md">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">Email</h4>
+                                <p class="mt-1 text-gray-600">
+                                    <a href="mailto:renee@soar2win.com" class="text-[#E9967A] hover:text-amber-600 transition duration-300">renee@soar2win.com</a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 text-white shadow-md">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">LinkedIn</h4>
+                                <p class="mt-1 text-gray-600">
+                                    <a href="https://linkedin.com/in/reneejacksonsmith" target="_blank" class="text-[#E9967A] hover:text-amber-600 transition duration-300">linkedin.com/in/reneejacksonsmith</a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 text-white shadow-md">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">Based In</h4>
+                                <p class="mt-1 text-gray-600">
+                                    Serving clients worldwide via Zoom
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Follow Soar2Win</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-[#E9967A] hover:text-amber-600 transition duration-300">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="#" class="text-[#E9967A] hover:text-amber-600 transition duration-300">
+                                <i class="fab fa-instagram text-xl"></i>
+                            </a>
+                            <a href="#" class="text-[#E9967A] hover:text-amber-600 transition duration-300">
+                                <i class="fab fa-facebook-f text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-white shadow-lg rounded-lg p-6 border border-amber-100">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6 font-playfair">Send a Message</h3>
+                        <form id="contact-form">
+                            <div class="mb-4">
+                                <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                <input type="text" id="contact-name" name="name" class="w-full px-3 py-2 border border-amber-300 rounded-md shadow-sm bg-amber-50 focus:outline-none focus:ring-[#E9967A] focus:border-[#E9967A]" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="contact-email" name="email" class="w-full px-3 py-2 border border-amber-300 rounded-md shadow-sm bg-amber-50 focus:outline-none focus:ring-[#E9967A] focus:border-[#E9967A]" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="contact-subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                <select id="contact-subject" name="subject" class="w-full px-3 py-2 border border-amber-300 rounded-md shadow-sm bg-amber-50 focus:outline-none focus:ring-[#E9967A] focus:border-[#E9967A]" required>
+                                    <option value="">Select a topic</option>
+                                    <option value="coaching">1:1 Coaching Inquiry</option>
+                                    <option value="group">Group Coaching</option>
+                                    <option value="speaking">Speaking Engagement</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea id="contact-message" name="message" rows="4" class="w-full px-3 py-2 border border-amber-300 rounded-md shadow-sm bg-amber-50 focus:outline-none focus:ring-[#E9967A] focus:border-[#E9967A]" required></textarea>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="px-6 py-2 border border-transparent text-base font-medium rounded-full text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:shadow-lg transition duration-300">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gradient-to-br from-amber-50 to-orange-50 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-10 left-10 w-40 h-40 rounded-full bg-orange-100 opacity-30"></div>
+        <div class="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-amber-100 opacity-40"></div>
+        <div class="floating-shape absolute bottom-1/4 left-1/3" style="animation-delay: 2s;">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="15" cy="15" r="15" fill="#DEB887" fill-opacity="0.4"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="bg-white p-8 rounded-lg shadow-lg border border-amber-100 scroll-reveal">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2 font-playfair">Join the Soar2Win Community</h2>
+                <div class="h-1 w-20 bg-[#E9967A] mx-auto mb-4"></div>
+                <p class="text-gray-600 mb-6">
+                    Get leadership insights, growth tips, and exclusive resources in your inbox.
+                </p>
+                <form id="subscription-form" class="max-w-md mx-auto">
+                    <div class="flex">
+                        <input type="email" name="email" placeholder="Your email address" class="flex-1 px-4 py-2 border border-amber-300 rounded-l-full bg-amber-50 focus:outline-none focus:ring-[#E9967A] focus:border-[#E9967A]" required>
+                        <button type="submit" class="px-6 py-2 border border-transparent text-base font-medium rounded-r-full text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:shadow-lg transition duration-300">
+                            Subscribe
+                        </button>
+                    </div>
+                    <p class="mt-2 text-xs text-gray-500">
+                        We respect your privacy. Unsubscribe at any time.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-[#DEB887] to-[#E9967A] text-white py-12 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white to-transparent opacity-30"></div>
+        <div class="absolute bottom-0 right-0 w-32 h-32 rounded-full bg-white opacity-5"></div>
+        <div class="absolute top-20 left-20 w-24 h-24 rounded-full bg-white opacity-5"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                <div class="col-span-2">
+                    <h3 class="text-xl font-playfair font-bold mb-4">Soar2Win Coaching</h3>
+                    <p class="text-white text-opacity-80 mb-4">
+                        Empowering ambitious women to unlock leadership confidence and thrive in life & career.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white text-opacity-80 hover:text-white hover:scale-110 transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-white text-opacity-80 hover:text-white hover:scale-110 transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white text-opacity-80 hover:text-white hover:scale-110 transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4 font-poppins">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-white text-opacity-80 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-white text-opacity-80 hover:text-white transition duration-300">About</a></li>
+                        <li><a href="#services" class="text-white text-opacity-80 hover:text-white transition duration-300">Services</a></li>
+                        <li><a href="#testimonials" class="text-white text-opacity-80 hover:text-white transition duration-300">Testimonials</a></li>
+                        <li><a href="#contact" class="text-white text-opacity-80 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4 font-poppins">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">1:1 Coaching</a></li>
+                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Group Programs</a></li>
+                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Speaking</a></li>
+                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Strategy Development</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4 font-poppins">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-white border-opacity-20">
+                <p class="text-white text-opacity-80 text-sm text-center font-poppins">
+                    &copy; 2023 Soar2Win Coaching. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Coffee Chat Modal -->    
+    <div id="coffee-chat-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-gradient-to-r from-orange-500 to-amber-500 py-4 px-6">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-medium text-white">Coffee Chat</h3>
+                        <button type="button" class="close-modal text-white hover:text-gray-200 focus:outline-none">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white px-6 py-4">
+                    <!-- Progress Bar -->
+                    <div class="mb-6">
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <span id="coffee-step-text" class="text-xs font-semibold inline-block text-orange-500">Step 1 of 3</span>
+                                </div>
+                                <div class="text-right">
+                                    <span id="coffee-progress-percentage" class="text-xs font-semibold inline-block text-orange-500">33%</span>
+                                </div>
+                            </div>
+                            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-orange-100">
+                                <div id="coffee-progress-bar" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-orange-500 to-amber-500" style="width: 33%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="coffee-chat-form" class="space-y-4">
+                        <!-- Step 1: Basic Information -->
+                        <div id="coffee-step-1" class="coffee-step">
+                            <h4 class="font-medium text-lg text-gray-800 mb-4">Basic Information</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="coffee-name" class="block text-sm font-medium text-gray-700">Name</label>
+                                    <input type="text" id="coffee-name" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="coffee-email" class="block text-sm font-medium text-gray-700">Email</label>
+                                    <input type="email" id="coffee-email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm" required>
+                                </div>
+                                
+                                <div class="pt-4 flex justify-end">
+                                    <button type="button" class="coffee-next-step inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                                        Next <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Connection Information -->
+                        <div id="coffee-step-2" class="coffee-step hidden">
+                            <h4 class="font-medium text-lg text-gray-800 mb-4">Connection Information</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="coffee-connection" class="block text-sm font-medium text-gray-700">Where did we meet or how do we know each other?</label>
+                                    <input type="text" id="coffee-connection" name="connection" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                                </div>
+                                
+                                <div class="pt-4 flex justify-between">
+                                    <button type="button" class="coffee-prev-step inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                                    </button>
+                                    <button type="button" class="coffee-next-step inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                                        Next <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Meeting Preparation -->
+                        <div id="coffee-step-3" class="coffee-step hidden">
+                            <h4 class="font-medium text-lg text-gray-800 mb-4">Meeting Preparation</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="coffee-meeting-prep" class="block text-sm font-medium text-gray-700">Please share anything that will help prepare for our meeting</label>
+                                    <textarea id="coffee-meeting-prep" name="meeting_prep" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm"></textarea>
+                                </div>
+                                
+                                <div class="pt-4 flex justify-between">
+                                    <button type="button" class="coffee-prev-step inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                                    </button>
+                                    <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                                        Submit <i class="fas fa-check ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Discovery Call Modal -->    
+    <div id="discovery-call-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-gradient-to-r from-[#0056b3] to-[#007bff] py-4 px-6">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-medium text-white">Discovery Call</h3>
+                        <button type="button" class="close-modal text-white hover:text-gray-200 focus:outline-none">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white px-6 py-4">
+                    <!-- Progress Bar -->
+                    <div class="mb-6">
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <span id="discovery-step-text" class="text-xs font-semibold inline-block text-blue-500">Step 1 of 4</span>
+                                </div>
+                                <div class="text-right">
+                                    <span id="discovery-progress-percentage" class="text-xs font-semibold inline-block text-blue-500">25%</span>
+                                </div>
+                            </div>
+                            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-100">
+                                <div id="discovery-progress-bar" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-[#0056b3] to-[#007bff]" style="width: 25%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="discovery-call-form" class="space-y-4">
+                        <!-- Step 1: Contact Information -->
+                        <div id="discovery-step-1" class="discovery-step">
+                            <h4 class="font-medium text-lg text-gray-800 mb-4">Contact Information</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="discovery-name" class="block text-sm font-medium text-gray-700">First/Last Name</label>
+                                    <input type="text" id="discovery-name" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="discovery-email" class="block text-sm font-medium text-gray-700">Email</label>
+                                    <input type="email" id="discovery-email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="discovery-phone" class="block text-sm font-medium text-gray-700">Phone (including country code)</label>
+                                    <input type="tel" id="discovery-phone" name="phone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                </div>
+                                
+                                <div class="pt-4 flex justify-end">
+                                    <button type="button" class="discovery-next-step inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-[#0056b3] to-[#007bff] hover:from-[#004494] hover:to-[#0056b3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        Next <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Coaching Interest -->
+                        <div id="discovery-step-2" class="discovery-step hidden">
+                            <h4 class="font-medium text-lg text-gray-800 mb-4">Your Coaching Interest</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">What inspired you to book this Discovery/Breakthrough Call?</label>
+                                    <div class="mt-2 space-y-2">
+                                        <div class="flex items-start">
+                                            <input id="coaching-1on1" name="inspired_by[]" value="1:1 Coaching" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                            <label for="coaching-1on1" class="ml-2 block text-sm text-gray-700">1:1 Coaching</label>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <input id="coaching-group" name="inspired_by[]" value="Group Coaching Program" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                            <label for="coaching-group" class="ml-2 block text-sm text-gray-700">Group Coaching Program</label>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <input id="speaking" name="inspired_by[]" value="Speaking/Facilitation" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                            <label for="speaking" class="ml-2 block text-sm text-gray-700">Speaking/Facilitation</label>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <input id="strategy" name="inspired_by[]" value="Strategy/Program Development" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                            <label for="strategy" class="ml-2 block text-sm text-gray-700">Strategy/Program Development</label>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <input id="partnerships" name="inspired_by[]" value="Partnerships/How we can work together" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                            <label for="partnerships" class="ml-2 block text-sm text-gray-700">Partnerships/How we can work together</label>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <input id="not-sure" name="inspired_by[]" value="Not sure" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                            <label for="not-sure" class="ml-2 block text-sm text-gray-700">Not sure</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="pt-4 flex justify-between">
+                                    <button type="button" class="discovery-prev-step inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                                    </button>
+                                    <button type="button" class="discovery-next-step inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-[#0056b3] to-[#007bff] hover:from-[#004494] hover:to-[#0056b3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        Next <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: How You Found Us -->
+                        <div id="discovery-step-3" class="discovery-step hidden">
+                            <h4 class="font-medium text-lg text-gray-800 mb-4">How You Found Us</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">How did you hear about me?</label>
+                                    <div class="mt-2 space-y-2">
+                                        <div class="flex items-start">
+                                            <input id="source-website" name="source" value="My website" type="radio" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                            <label for="source-website" class="ml-2 block text-sm text-gray-700">My website</label>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <input id="source-instagram" name="source" value="Instagram" type="radio" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                            <label for="source-instagram" class="ml-2 block text-sm text-gray-700">Instagram</label>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <input id="source-linkedin" name="source" value="LinkedIn" type="radio" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                            <label for="source-linkedin" class="ml-2 block text-sm text-gray-700">LinkedIn</label>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <input id="source-facebook" name="source" value="Facebook" type="radio" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                            <label for="source-facebook" class="ml-2 block text-sm text-gray-700">Facebook</label>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <input id="source-other" name="source" value="Other" type="radio" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                            <label for="source-other" class="ml-2 block text-sm text-gray-700">Other</label>
+                                        </div>
+                                        <div id="other-source-container" class="hidden mt-2">
+                                            <input type="text" id="other-source" name="other_source" placeholder="Please share" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="pt-4 flex justify-between">
+                                    <button type="button" class="discovery-prev-step inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                                    </button>
+                                    <button type="button" class="discovery-next-step inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-[#0056b3] to-[#007bff] hover:from-[#004494] hover:to-[#0056b3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        Next <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4: Final Details -->
+                        <div id="discovery-step-4" class="discovery-step hidden">
+                            <h4 class="font-medium text-lg text-gray-800 mb-4">Final Details</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="discovery-challenges" class="block text-sm font-medium text-gray-700">What challenges are holding you back right now?</label>
+                                    <textarea id="discovery-challenges" name="challenges" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required></textarea>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Are you fully committed to investing your time, energy, and financial resources to turn your goal into reality?</label>
+                                    <div class="mt-2 space-y-2">
+                                        <div class="flex items-start">
+                                            <input id="commitment-yes" name="commitment" value="Yes" type="radio" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" required>
+                                            <label for="commitment-yes" class="ml-2 block text-sm text-gray-700">Yes</label>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <input id="commitment-no" name="commitment" value="No" type="radio" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" required>
+                                            <label for="commitment-no" class="ml-2 block text-sm text-gray-700">No</label>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <input id="commitment-maybe" name="commitment" value="Maybe" type="radio" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" required>
+                                            <label for="commitment-maybe" class="ml-2 block text-sm text-gray-700">Maybe</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex items-start">
+                                        <input id="email-list" name="join_email_list" value="Yes" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                        <label for="email-list" class="ml-2 block text-sm text-gray-700">Would you like to join my email list?</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="pt-4 flex justify-between">
+                                    <button type="button" class="discovery-prev-step inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                                    </button>
+                                    <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-[#0056b3] to-[#007bff] hover:from-[#004494] hover:to-[#0056b3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        Submit <i class="fas fa-check ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effects
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            const scrollTop = window.scrollY;
+            
+            if (scrollTop > 10) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            
+            // Add scroll reveal animations for elements
+            const scrollElements = document.querySelectorAll('.scroll-reveal');
+            
+            scrollElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+        
+        // Modal functionality
+        function setupModals() {
+            // Coffee Chat modal
+            const coffeeModal = document.getElementById('coffee-chat-modal');
+            const discoveryModal = document.getElementById('discovery-call-modal');
+            
+            // Open modals based on hash links
+            document.querySelectorAll('a[href="#book"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Default to discovery call modal
+                    discoveryModal.classList.remove('hidden');
+                    resetForm('discovery-call-form', 'discovery');
+                });
+            });
+            
+            // Specific button for coffee chat
+            document.querySelectorAll('.open-coffee-chat').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    coffeeModal.classList.remove('hidden');
+                    resetForm('coffee-chat-form', 'coffee');
+                });
+            });
+            
+            // Specific button for discovery call
+            document.querySelectorAll('.open-discovery-call').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    discoveryModal.classList.remove('hidden');
+                    resetForm('discovery-call-form', 'discovery');
+                });
+            });
+            
+            // Close buttons
+            document.querySelectorAll('.close-modal').forEach(button => {
+                button.addEventListener('click', function() {
+                    coffeeModal.classList.add('hidden');
+                    discoveryModal.classList.add('hidden');
+                });
+            });
+            
+            // Close on outside click
+            window.addEventListener('click', function(event) {
+                if (event.target === coffeeModal) {
+                    coffeeModal.classList.add('hidden');
+                }
+                if (event.target === discoveryModal) {
+                    discoveryModal.classList.add('hidden');
+                }
+            });
+            
+            // Show Other source field when 'Other' is selected
+            document.getElementById('source-other').addEventListener('change', function() {
+                document.getElementById('other-source-container').classList.toggle('hidden', !this.checked);
+            });
+            
+            // Multi-step form navigation for Coffee Chat
+            setupMultiStepForm('coffee', 3);
+            
+            // Multi-step form navigation for Discovery Call
+            setupMultiStepForm('discovery', 4);
+            
+            // Form submissions
+            document.getElementById('coffee-chat-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateStep('coffee', 3)) {
+                    submitForm('coffee-chat-form', 'Coffee Chat');
+                }
+            });
+            
+            document.getElementById('discovery-call-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateStep('discovery', 4)) {
+                    submitForm('discovery-call-form', 'Discovery Call');
+                }
+            });
+            
+            function setupMultiStepForm(formPrefix, totalSteps) {
+                // Next buttons
+                document.querySelectorAll(`.${formPrefix}-next-step`).forEach(button => {
+                    button.addEventListener('click', function() {
+                        const currentStep = getCurrentStep(formPrefix);
+                        if (validateStep(formPrefix, currentStep)) {
+                            goToStep(formPrefix, currentStep + 1, totalSteps);
+                        }
+                    });
+                });
+                
+                // Previous buttons
+                document.querySelectorAll(`.${formPrefix}-prev-step`).forEach(button => {
+                    button.addEventListener('click', function() {
+                        const currentStep = getCurrentStep(formPrefix);
+                        goToStep(formPrefix, currentStep - 1, totalSteps);
+                    });
+                });
+            }
+            
+            function getCurrentStep(formPrefix) {
+                let currentStep = 1;
+                document.querySelectorAll(`.${formPrefix}-step`).forEach((step, index) => {
+                    if (!step.classList.contains('hidden')) {
+                        currentStep = index + 1;
+                    }
+                });
+                return currentStep;
+            }
+            
+            function goToStep(formPrefix, stepNumber, totalSteps) {
+                // Hide all steps
+                document.querySelectorAll(`.${formPrefix}-step`).forEach((step, index) => {
+                    step.classList.add('hidden');
+                });
+                
+                // Show the target step
+                document.getElementById(`${formPrefix}-step-${stepNumber}`).classList.remove('hidden');
+                
+                // Update progress bar
+                const progressPercentage = Math.round((stepNumber / totalSteps) * 100);
+                document.getElementById(`${formPrefix}-progress-bar`).style.width = `${progressPercentage}%`;
+                document.getElementById(`${formPrefix}-progress-percentage`).textContent = `${progressPercentage}%`;
+                document.getElementById(`${formPrefix}-step-text`).textContent = `Step ${stepNumber} of ${totalSteps}`;
+                
+                // Scroll to top of form
+                document.getElementById(`${formPrefix}-step-${stepNumber}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            function validateStep(formPrefix, stepNumber) {
+                const stepElement = document.getElementById(`${formPrefix}-step-${stepNumber}`);
+                const inputs = stepElement.querySelectorAll('input[required], select[required], textarea[required]');
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        input.classList.add('border-red-500');
+                        
+                        // Add error message if not already present
+                        const errorId = `${input.id}-error`;
+                        if (!document.getElementById(errorId)) {
+                            const errorMsg = document.createElement('p');
+                            errorMsg.id = errorId;
+                            errorMsg.className = 'text-red-500 text-xs mt-1';
+                            errorMsg.textContent = 'This field is required';
+                            input.parentNode.appendChild(errorMsg);
+                        }
+                    } else {
+                        input.classList.remove('border-red-500');
+                        const errorMsg = document.getElementById(`${input.id}-error`);
+                        if (errorMsg) {
+                            errorMsg.remove();
+                        }
+                    }
+                });
+                
+                // For radio buttons, check if any in the group is selected
+                const radioGroups = {};
+                stepElement.querySelectorAll('input[type="radio"][required]').forEach(radio => {
+                    if (!radioGroups[radio.name]) {
+                        radioGroups[radio.name] = [];
+                    }
+                    radioGroups[radio.name].push(radio);
+                });
+                
+                Object.keys(radioGroups).forEach(groupName => {
+                    const isChecked = radioGroups[groupName].some(radio => radio.checked);
+                    if (!isChecked) {
+                        isValid = false;
+                        const errorId = `${groupName}-error`;
+                        if (!document.getElementById(errorId)) {
+                            const errorMsg = document.createElement('p');
+                            errorMsg.id = errorId;
+                            errorMsg.className = 'text-red-500 text-xs mt-1';
+                            errorMsg.textContent = 'Please select an option';
+                            radioGroups[groupName][0].closest('div').appendChild(errorMsg);
+                        }
+                    } else {
+                        const errorMsg = document.getElementById(`${groupName}-error`);
+                        if (errorMsg) {
+                            errorMsg.remove();
+                        }
+                    }
+                });
+                
+                return isValid;
+            }
+            
+            function resetForm(formId, formPrefix) {
+                // Reset the form fields
+                document.getElementById(formId).reset();
+                
+                // Go to first step
+                const totalSteps = formPrefix === 'coffee' ? 3 : 4;
+                goToStep(formPrefix, 1, totalSteps);
+                
+                // Remove any error messages
+                document.querySelectorAll('.text-red-500').forEach(el => el.remove());
+                document.querySelectorAll('.border-red-500').forEach(el => el.classList.remove('border-red-500'));
+            }
+            
+            function submitForm(formId, formType) {
+                const form = document.getElementById(formId);
+                const formData = new FormData(form);
+                const jsonData = {};
+                
+                formData.forEach((value, key) => {
+                    if(key === 'inspired_by[]') {
+                        if(!jsonData[key]) {
+                            jsonData[key] = [];
+                        }
+                        jsonData[key].push(value);
+                    } else {
+                        jsonData[key] = value;
+                    }
+                });
+                
+                jsonData['form_type'] = formType;
+                
+                fetch('https://s2q30xhc.rpcld.com/webhook/d5a706ee-aee5-4b36-bd9c-7cb22dc0a3e0', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(jsonData)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Form submitted successfully!');
+                        form.reset();
+                        coffeeModal.classList.add('hidden');
+                        discoveryModal.classList.add('hidden');
+                    } else {
+                        alert('There was an error submitting the form. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was an error submitting the form. Please try again.');
+                });
+            }
+        }
+        
+        // Initialize modals when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize expandable cards
+            const expandableCards = document.querySelectorAll('.expandable-card');
+            
+            expandableCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    
+                    // Toggle visibility for content
+                    const content = this.querySelector('.card-content');
+                    if (this.classList.contains('active')) {
+                        // No need to set explicit height - CSS will handle with the large max-height
+                        // Just ensure it's fully visible with proper padding
+                        content.style.paddingBottom = '1rem';
+                    } else {
+                        content.style.maxHeight = '0';
+                        content.style.paddingBottom = '0';
+                    }
+                });
+            });
+            setupModals();
+            
+            // Initialize scroll reveal animations
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            scrollRevealElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Handle subscription form submission
+            const subscriptionForm = document.getElementById('subscription-form');
+            if (subscriptionForm) {
+                subscriptionForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = subscriptionForm.querySelector('input[name="email"]').value;
+                    
+                    if (email) {
+                        const jsonData = {
+                            email: email,
+                            form_type: 'Newsletter Subscription'
+                        };
+                        
+                        fetch('https://s2q30xhc.rpcld.com/webhook/d5a706ee-aee5-4b36-bd9c-7cb22dc0a3e0', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(jsonData)
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                alert('Thank you for subscribing!');
+                                subscriptionForm.reset();
+                            } else {
+                                alert('There was an error submitting the form. Please try again.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('There was an error submitting the form. Please try again.');
+                        });
+                    }
+                });
+            }
+            
+            // Handle contact form submission
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = contactForm.querySelector('input[name="name"]').value;
+                    const email = contactForm.querySelector('input[name="email"]').value;
+                    const subject = contactForm.querySelector('select[name="subject"]').value;
+                    const message = contactForm.querySelector('textarea[name="message"]').value;
+                    
+                    if (name && email && subject && message) {
+                        const jsonData = {
+                            name: name,
+                            email: email,
+                            subject: subject,
+                            message: message,
+                            form_type: 'Contact Form'
+                        };
+                        
+                        fetch('https://s2q30xhc.rpcld.com/webhook/d5a706ee-aee5-4b36-bd9c-7cb22dc0a3e0', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(jsonData)
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                alert('Thank you for your message! We will get back to you soon.');
+                                contactForm.reset();
+                            } else {
+                                alert('There was an error submitting the form. Please try again.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('There was an error submitting the form. Please try again.');
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
