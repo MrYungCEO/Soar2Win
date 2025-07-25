@@ -230,6 +230,53 @@
         }
         
         /* Hero Image Hover Effect */
+        
+        /* Stylish Outline for Hero Image */
+        .stylish-outline {
+            position: relative;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: visible;
+        }
+        
+        .stylish-outline::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(135deg, #E9967A, #DEB887, #F5DEB3, #E9967A);
+            background-size: 400% 400%;
+            border-radius: 8px;
+            z-index: 5;
+            animation: gradient-border 6s ease infinite;
+            filter: drop-shadow(0 10px 15px rgba(233, 150, 122, 0.3));
+        }
+        
+        .stylish-outline::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            border-radius: 5px;
+            z-index: 6;
+        }
+        
+        .stylish-outline img {
+            position: relative;
+            z-index: 7;
+            border-radius: 3px;
+        }
+        
+        @keyframes gradient-border {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         .hero-image-container {
             position: relative;
             overflow: hidden;
@@ -511,8 +558,8 @@
                     <div class="relative">
                         <!-- Decorative frame removed -->
                         
-                        <div class="hero-image-wrapper">
-                            <img src="https://thumbs.dreamstime.com/b/cheering-young-woman-open-arms-sunrisebeach-50652524.jpg" 
+                        <div class="hero-image-wrapper stylish-outline">
+                            <img src="https://i.ibb.co/Mrszv0T/Designer-30.png" 
                                  alt="Woman celebrating success" 
                                  class="hero-image w-full h-full object-cover relative z-10">
                         </div>
@@ -528,13 +575,13 @@
                     <span class="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 text-orange-800 text-sm font-medium mb-6 animate-pulse">Certified Leadership Life Coach</span>
                     
                     <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                        Lead with <span class="text-gradient">Energy</span>. Speak with <span class="text-gradient">Power</span>. Thrive with <span class="text-gradient">Purpose</span>.
+                        Lead with <span class="text-gradient">Energy</span>. Speak with <span class="text-gradient">Power</span>. <span class="whitespace-nowrap">Thrive with <span class="text-gradient">Purpose</span>.</span>
                     </h1>
                     
                     <p class="text-xl md:text-2xl mb-8 opacity-90 font-light">
                         Coaching for women who are ready to rise—whether you're stepping into leadership, navigating a career or life transition, or reclaiming your voice with clarity and purpose.
                     </p>
-                    <p class="text-lg md:text-xl mb-8 opacity-90 font-light">
+                    <p class="text-lg md:text-xl mb-8 opacity-90 font-bold italic">
                         Renee Jackson-Smith is an ICF-certified energy, leadership, and life coach dedicated to helping purpose-driven women lead authentically, navigate change, and thrive—professionally and personally.
                     </p>
                     
@@ -581,7 +628,7 @@
                 </div>
                 
                 <!-- Mission Statement - Top Right -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-orange-100 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 scroll-reveal">
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 p-8 rounded-2xl shadow-lg transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 scroll-reveal">
                     <h3 class="text-2xl font-bold text-gray-900 mb-4 font-playfair">Mission Statement</h3>
                     <p class="text-gray-700">
                         Soar2Win Coaching exists to help ambitious, purpose-driven women lead from within. Through personalized coaching grounded in Core Energy Coaching™ and mental fitness practices, I help women shift limiting beliefs, reclaim their voice, and build the confidence to navigate change and rise into impactful leadership roles—both professionally and personally.
@@ -592,7 +639,7 @@
                 </div>
                 
                 <!-- Professional Background - Bottom Left -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-orange-100 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 scroll-reveal">
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 p-8 rounded-2xl shadow-lg transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 scroll-reveal">
                     <h3 class="text-2xl font-bold text-gray-900 mb-4 font-playfair">Professional Background</h3>
                     <p class="text-gray-700">
                         Renee Jackson-Smith is an ICF-certified energy, leadership, and life coach with a deep background in executive leadership, talent development, and women's empowerment. Her corporate career spans over two decades of rising through leadership roles, giving her firsthand insight into the challenges women face in high-pressure environments—especially around confidence, voice, and visibility.
@@ -603,7 +650,7 @@
                 </div>
                 
                 <!-- Coaching Model - Bottom Right -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-amber-100 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 scroll-reveal">
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 p-8 rounded-2xl shadow-lg transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 scroll-reveal">
                     <h3 class="text-2xl font-bold text-gray-900 mb-4 font-playfair">Our Coaching Model</h3>
                     <p class="text-gray-700 mb-4">
                         At Soar2Win, our coaching approach blends Core Energy Coaching™, mindset work, and mental fitness to help women lead with clarity, confidence, and purpose. Our signature SOAR Model guides this transformation:
@@ -623,7 +670,8 @@
                         </li>
                     </ul>
                     <p class="text-gray-700 mt-4">
-                        We also integrate Core Energy Coaching™ and Positive Intelligence® for a comprehensive approach.
+                        We also integrate Core Energy Coaching™ and Positive Intelligence® for a comprehensive approach. Together, these tools create a personalized coaching experience that helps
+                        women lead from within and thrive—personally and professionally. 
                     </p>
                 </div>
             </div>
@@ -853,6 +901,20 @@
                                 <h4 class="text-lg font-semibold text-gray-900">Focused Support</h4>
                                 <p class="mt-1 text-gray-600">
                                     Deep experience coaching women of color, emerging leaders, and purpose-driven professionals.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-20 w-20 rounded-md">
+                            <img src="https://i.ibb.co/WTrwCZq/CPTD-Certification-Badge.png" alt="CPTD Certified" class="h-20 w-20 rounded-md">
+                        </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">CPTD Certified</h4>
+                                <p class="mt-1 text-gray-600">
+                                    Certified Professional in Talent Development with expertise in building leadership capabilities.
                                 </p>
                             </div>
                         </div>
@@ -1222,13 +1284,13 @@
                         Empowering ambitious women to unlock leadership confidence and thrive in life & career.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-white text-opacity-80 hover:text-white hover:scale-110 transition duration-300">
+                        <a href="https://www.linkedin.com/in/renee-jackson-smith" target="_blank" rel="noopener noreferrer" class="text-white text-opacity-80 hover:text-white hover:scale-110 transition duration-300">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="#" class="text-white text-opacity-80 hover:text-white hover:scale-110 transition duration-300">
+                        <a href="https://www.instagram.com/soar2wincoaching" target="_blank" rel="noopener noreferrer" class="text-white text-opacity-80 hover:text-white hover:scale-110 transition duration-300">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="text-white text-opacity-80 hover:text-white hover:scale-110 transition duration-300">
+                        <a href="https://www.facebook.com/soar2wincoaching" target="_blank" rel="noopener noreferrer" class="text-white text-opacity-80 hover:text-white hover:scale-110 transition duration-300">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                     </div>
@@ -1248,19 +1310,19 @@
                 <div>
                     <h4 class="text-sm font-semibold uppercase tracking-wider mb-4 font-poppins">Services</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">1:1 Coaching</a></li>
-                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Group Programs</a></li>
-                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Speaking</a></li>
-                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Strategy Development</a></li>
+                        <li><a href="#services" class="text-white text-opacity-80 hover:text-white transition duration-300">1:1 Coaching</a></li>
+                        <li><a href="#services" class="text-white text-opacity-80 hover:text-white transition duration-300">Group Programs</a></li>
+                        <li><a href="#services" class="text-white text-opacity-80 hover:text-white transition duration-300">Speaking</a></li>
+                        <li><a href="#services" class="text-white text-opacity-80 hover:text-white transition duration-300">Strategy Development</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 class="text-sm font-semibold uppercase tracking-wider mb-4 font-poppins">Legal</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Privacy Policy</a></li>
-                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Terms of Service</a></li>
-                        <li><a href="#" class="text-white text-opacity-80 hover:text-white transition duration-300">Cookie Policy</a></li>
+                        <li><a href="privacy-policy.html" class="text-white text-opacity-80 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" class="text-white text-opacity-80 hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html" class="text-white text-opacity-80 hover:text-white transition duration-300">Cookie Policy</a></li>
                     </ul>
                 </div>
             </div>
