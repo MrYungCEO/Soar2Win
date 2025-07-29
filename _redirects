@@ -1,0 +1,17 @@
+# Netlify redirects file
+# Redirect /blogs to blogs.html (case-insensitive)
+/blogs              /blogs/blogs.html     200
+/BLOGS              /blogs/blogs.html     200
+/blogs/             /blogs/blogs.html     200
+/BLOGS/             /blogs/blogs.html     200
+
+# Handle blog post slugs - redirect to the appropriate HTML file
+/blogs/:slug        /blogs/:slug.html     200
+/BLOGS/:slug        /blogs/:slug.html     200
+
+# Fallback for any other routes under /blogs
+/blogs/*            /blogs/blogs.html     200
+/BLOGS/*            /blogs/blogs.html     200
+
+# SPA fallback for the main app
+/*                  /index.html           200
