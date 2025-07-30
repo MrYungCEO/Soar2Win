@@ -1,0 +1,36 @@
+{
+  "blogListPage": {
+    "layout": "grid",
+    "postsPerPage": 6,
+    "showFeatured": true,
+    "headerStyle": "centered",
+    "backgroundColor": "#2d3748",
+    "textColor": "#f7fafc",
+    "accentColor": "#e1ff00",
+    "fontFamily": "Poppins"
+  },
+  "blogPostPage": {
+    "showAuthor": true,
+    "showDate": true,
+    "showShareButtons": true,
+    "showTableOfContents": false,
+    "backgroundColor": "#1e1b4b",
+    "textColor": "#ffffff",
+    "accentColor": "#6b21a8",
+    "fontFamily": "Poppins"
+  },
+  "themeOptions": {
+    "primaryColor": "#9f7aea",
+    "secondaryColor": "#ed8936",
+    "textColor": "#ffffff",
+    "backgroundColor": "#1e1b4b",
+    "fontFamily": "Poppins",
+    "useGradient": true,
+    "gradientStart": "#6b21a8",
+    "gradientEnd": "#3b0764"
+  },
+  "apiSettings": {
+    "geminiApiKey": "AIzaSyA3sVYKlp40WK5ihFNEC1x0qP11hBsFOgM",
+    "geminiModel": "gemini-2.5-flash"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "primaryColor": "#10b981",
+  "secondaryColor": "#f59e0b",
+  "textColor": "#ffffff",
+  "backgroundColor": "#1e1b4b",
+  "fontFamily": "Poppins",
+  "useGradient": true,
+  "gradientStart": "#6b21a8",
+  "gradientEnd": "#3b0764"
+}

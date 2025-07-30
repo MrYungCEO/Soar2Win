@@ -1,0 +1,49 @@
+
+:root {
+  --primary-color: #10b981;
+  --secondary-color: #f59e0b;
+  --gradient-bg: linear-gradient(to right, #6b21a8, #3b0764);
+  --text-color: #ffffff;
+  --text-secondary: #e2e8f0;
+  --background-color: #1e1b4b;
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+}
+
+a {
+  color: var(--secondary-color);
+}
+
+.blog-header {
+  background: var(--gradient-bg);
+  color: var(--text-color);
+}
+
+.blog-theme header {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.blog-theme h1 {
+  color: var(--text-color);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.blog-theme .card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(10px);
+  margin-bottom: 1.5rem;
+}
