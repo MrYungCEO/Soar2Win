@@ -1,14 +1,13 @@
 :root {
-  --primary-color: #f97316;
-  --secondary-color: #0f172a;
-  --accent-color: #ec4899;
-  --bg-color: #fefcfb;
-  --card-bg: #ffffff;
-  --border-color: #e2e8f0;
-  --muted-text: #64748b;
-  --shadow: rgba(0, 0, 0, 0.08);
+  /* Theme Variables - Customizable */
+  --primary-color: #9f7aea;
+  --secondary-color: #ed8936;
+  --gradient-bg: linear-gradient(to right, #6b21a8, #3b0764);
+  --text-color: #ffffff;
+  --text-secondary: #e2e8f0;
+  --background-color: #1e1b4b;
+  --card-bg: rgba(255, 255, 255, 0.1);
   --font-family: 'Poppins', sans-serif;
-  --transition: all 0.3s ease;
 }
 
 /* General */
