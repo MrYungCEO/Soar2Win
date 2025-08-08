@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Blogs</title>
+    <link rel="stylesheet" href="styles/themes.css">
+    <link rel="stylesheet" href="blogs/styles/blog-theme.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #fffaf0; /* Light Background (Orange-50 equivalent) */
+            color: #4a5568; /* General Text (Gray-700 equivalent) */
+        }
+        /* Navbar glass morphism style */
+        .navbar {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #E9967A;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff; /* White */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #1a202c; /* Dark Text (Gray-900 equivalent) */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .blog-list {
+            list-style: none;
+            padding: 0;
+        }
+        .blog-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0; /* Light gray border */
+        }
+        .blog-item:last-child {
+            border-bottom: none;
+        }
+        .blog-item span {
+            flex-grow: 1;
+            margin-right: 10px;
+            color: #1a202c; /* Dark Text */
+        }
+        .blog-item button {
+            background-color: #dc3545; /* A standard red for danger */
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .blog-item button:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+        .form-section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0; /* Light gray border */
+        }
+        .form-section label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600; /* Semi-bold */
+            color: #1a202c; /* Dark Text */
+        }
+        .form-section input[type="text"],
+        .form-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #cbd5e0; /* Light gray border */
+            border-radius: 4px;
+            background-color: #f9fafb; /* Very Light Gray */
+            color: #1a202c; /* Dark Text */
+        }
+        .form-section button {
+            background-color: #007bff; /* Call-to-Action Blue */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-section button:hover {
+            background-color: #0056b3; /* Call-to-Action Blue (Hover) */
+        }
+    </style>
+</head>
+<body class="bg-orange-50">
+    <div id="password-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000;">
+        <div style="background-color: white; padding: 20px; border-radius: 8px; text-align: center;">
+            <h2>Enter Password</h2>
+            <input type="password" id="password-input" style="padding: 8px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px;">
+            <button id="submit-password" style="background-color: #007bff; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">Submit</button>
+            <p id="password-error" style="color: red; margin-top: 10px; display: none;">Incorrect password.</p>
+        </div>
+    </div>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Navigation -->
+    <nav class="navbar bg-white bg-opacity-70 backdrop-blur-md fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex items-center">
+                        <img src="https://iili.io/FeOsrNV.md.png" alt="Soar2WIN Leadership & Life Coaching" class="h-28">
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="index.html#home" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="index.html#about" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">About</a>
+                    <a href="index.html#services" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Services</a>
+                    <a href="index.html#why" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Why Coaching</a>
+                    <a href="index.html#testimonials" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Testimonials</a>
+                    <a href="index.html#contact" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Contact</a>
+                    <a href="blogs.html" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Blog</a>
+                    <div class="flex items-center space-x-4 mr-4">
+                        <a href="https://www.facebook.com/Soar2Win" target="_blank" class="text-gray-600 hover:text-[#E9967A]" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/reneejacksonsmith/" target="_blank" class="text-gray-600 hover:text-[#E9967A]" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/soar2win/" target="_blank" class="text-gray-600 hover:text-[#E9967A]" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <a href="index.html#book" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:shadow-lg transition duration-300 open-discovery-call">
+                        Book a Call
+                    </a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#E9967A] hover:bg-gray-50">Home</a>
+                <a href="index.html#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#E9967A] hover:bg-gray-50">About</a>
+                <a href="index.html#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#E9967A] hover:bg-gray-50">Services</a>
+                <a href="index.html#why" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#E9967A] hover:bg-gray-50">Why Coaching</a>
+                <a href="index.html#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#E9967A] hover:bg-gray-50">Testimonials</a>
+                <a href="index.html#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#E9967A] hover:bg-gray-50">Contact</a>
+                <a href="index.html#book" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:shadow-lg">
+                    Book a Call
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+    <div class="container mt-20"> <!-- Added mt-20 to push content below fixed navbar -->
+        <h1>Manage Blogs</h1>
+
+        <section class="form-section">
+            <h2>Generate New Blog</h2>
+            <form id="generateBlogForm">
+                <label for="topic">Topic:</label>
+                <input type="text" id="topic" name="topic" required>
+
+                <label for="targetAudience">Target Audience:</label>
+                <input type="text" id="targetAudience" name="targetAudience" required>
+
+                <label for="seoTargetWords">SEO Target Words (comma-separated):</label>
+                <textarea id="seoTargetWords" name="seoTargetWords" rows="3" required></textarea>
+
+                <button type="submit">Generate Blog</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Existing Blogs</h2>
+            <ul id="blogList" class="blog-list">
+                <!-- Blogs will be loaded here by JavaScript -->
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const passwordOverlay = document.getElementById('password-overlay');
+            const passwordInput = document.getElementById('password-input');
+            const submitPasswordButton = document.getElementById('submit-password');
+            const passwordError = document.getElementById('password-error');
+
+            // IMPORTANT: In a real application, this password should be fetched securely from a server-side environment variable,
+            // NOT hardcoded in client-side JavaScript. This is for demonstration purposes only.
+            const correctPassword = 'SolarMan888$'; 
+
+            submitPasswordButton.addEventListener('click', () => {
+                if (passwordInput.value === correctPassword) {
+                    passwordOverlay.style.display = 'none';
+                    initializePageContent(); // Initialize the rest of the page
+                } else {
+                    passwordError.style.display = 'block';
+                }
+            });
+
+            // Function to initialize the main page content after successful login
+            function initializePageContent() {
+                const blogListElement = document.getElementById('blogList');
+                const generateBlogForm = document.getElementById('generateBlogForm');
+
+                // Initialize Supabase client
+                const supabaseUrl = 'https://cxwswtnpmjuftqmaqzae.supabase.co'; // From blogs.html
+                const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN4d3N3dG5wbWp1ZnRxbWFxemFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMyNzUzMDgsImV4cCI6MjA1ODg1MTMwOH0.KND-kmT3JEtGL0J-I0XVr2jdNSKB5-JO0m5afEVK-mo'; // From blogs.html
+                const supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+                // Function to fetch and display blogs from Supabase
+                async function fetchBlogs() {
+                    blogListElement.innerHTML = '<li>Loading blogs...</li>'; // Show loading state
+
+                    try {
+                        const { data, error } = await supabaseClient
+                            .from('soar2win_blogs')
+                            .select('title, slug') // Only need title and slug for this list
+                            .order('created_at', { ascending: false });
+
+                        if (error) {
+                            console.error('Error fetching blog posts:', error.message);
+                            blogListElement.innerHTML = `<li>Error loading blogs: ${error.message}</li>`;
+                            return;
+                        }
+
+                        renderBlogs(data);
+                    } catch (error) {
+                        console.error('Error fetching blogs:', error);
+                        blogListElement.innerHTML = '<li>Error loading blogs.</li>';
+                    }
+                }
+
+                // Function to render blogs in the list
+                function renderBlogs(blogs) {
+                    blogListElement.innerHTML = ''; // Clear existing list
+                    if (!Array.isArray(blogs) || blogs.length === 0) {
+                        blogListElement.innerHTML = '<li>No blogs found.</li>';
+                        return;
+                    }
+                    blogs.forEach(blog => {
+                        const listItem = document.createElement('li');
+                        listItem.className = 'blog-item';
+                        listItem.innerHTML = `
+                            <span>${blog.title || 'Untitled Blog'} (Slug: ${blog.slug || 'N/A'})</span>
+                            <button data-slug="${blog.slug}">Delete</button>
+                        `;
+                        blogListElement.appendChild(listItem);
+                    });
+
+                    // Add event listeners to delete buttons
+                    document.querySelectorAll('.blog-item button').forEach(button => {
+                        button.addEventListener('click', handleDelete);
+                    });
+                }
+
+                // Handle delete button click
+                async function handleDelete(event) {
+                    const blogSlug = event.target.dataset.slug;
+                    if (confirm(`Are you sure you want to delete blog with slug: ${blogSlug}?`)) {
+                        try {
+                            // Send slug to the delete webhook
+                            const deleteWebhook = 'https://2o7mcyz7.rpcld.co/webhook/546e89b9-ebd5-4f80-a8cf-a96341d85b2d';
+                            const response = await fetch(deleteWebhook, {
+                                method: 'POST', // Webhook expects POST
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ slug: blogSlug, table: 'soar2win_blogs' }),
+                            });
+
+                            if (response.ok) {
+                                alert(`Blog ${blogSlug} deletion request sent successfully.`);
+                                fetchBlogs(); // Refresh the list
+                            } else {
+                                alert(`Failed to send delete request for blog ${blogSlug}.`);
+                                console.error('Delete failed:', response.statusText);
+                            }
+                        } catch (error) {
+                            console.error('Error during delete:', error);
+                            alert('An error occurred while trying to delete the blog.');
+                        }
+                    }
+                }
+
+                // Handle generate blog form submission
+                generateBlogForm.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    const formData = new FormData(generateBlogForm);
+                    const data = Object.fromEntries(formData.entries());
+                    data.seoTargetWords = data.seoTargetWords.split(',').map(word => word.trim());
+                    data.table = 'soar2win_blogs'; // Add table name to the data
+
+                    try {
+                        // Send data to the generate webhook
+                        const generateWebhook = 'https://2o7mcyz7.rpcld.co/webhook/95027791-a9fc-42f3-b26c-21ae214210c8';
+                        const response = await fetch(generateWebhook, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data),
+                        });
+
+                        if (response.ok) {
+                            alert('Blog generation request sent successfully.');
+                            generateBlogForm.reset(); // Clear the form
+                            // Optionally, refresh blog list if new blog appears immediately
+                            // fetchBlogs();
+                        } else {
+                            alert('Failed to send blog generation request.');
+                            console.error('Generate failed:', response.statusText);
+                        }
+                    } catch (error) {
+                        console.error('Error during generate:', error);
+                        alert('An error occurred while trying to generate the blog.');
+                    }
+                });
+
+                // Initial fetch of blogs when the page loads
+                fetchBlogs();
+            }
+
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+                const menu = document.getElementById('mobile-menu');
+                menu.classList.toggle('hidden');
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

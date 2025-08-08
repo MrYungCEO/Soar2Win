@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Blog Post | Soar2Win</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #4a5568; /* General Text (Gray-700 equivalent) */
+            background-color: #fffaf0; /* Light Background (Orange-50 equivalent) */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .blog-content h1, .blog-content h2, .blog-content h3, .blog-content h4, .blog-content h5, .blog-content h6 {
+            font-family: 'Playfair Display', serif;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            line-height: 1.2;
+            color: #1a202c; /* Dark Text (Gray-900 equivalent) */
+        }
+
+        .blog-content h1 { font-size: 2.5em; }
+        .blog-content h2 { font-size: 2em; }
+        .blog-content h3 { font-size: 1.75em; }
+        .blog-content h4 { font-size: 1.5em; }
+        .blog-content h5 { font-size: 1.25em; }
+        .blog-content h6 { font-size: 1em; }
+
+        .blog-content p {
+            margin-bottom: 1em;
+        }
+
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1em auto;
+            border-radius: 8px;
+        }
+
+        .blog-content pre {
+            background-color: #f9fafb; /* Very Light Gray (Gray-50 equivalent) */
+            padding: 1em;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1em 0;
+        }
+
+        .blog-content code {
+            font-family: 'Courier New', monospace;
+        }
+
+        .blog-content blockquote {
+            border-left: 4px solid #FF7F50; /* Coral */
+            padding-left: 1em;
+            margin: 1em 0;
+            font-style: italic;
+            color: #718096; /* Secondary Text (Gray-600 equivalent) */
+        }
+
+        .blog-content ul, .blog-content ol {
+            margin: 1em 0;
+            padding-left: 1.5em;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5em;
+        }
+    </style>
+</head>
+<body class="font-sans bg-[#fffaf0] text-[#4a5568]">
+    <!-- Navigation - Replicated from index.html for consistency -->
+    <nav class="bg-white sticky top-0 z-50 border-b border-gray-200 shadow-sm backdrop-blur-sm bg-white/80">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex items-center space-x-2">
+                        <div class="flex items-center">
+                            <img src="https://iili.io/FeOsrNV.md.png" alt="Soar2Win Logo" class="h-28 w-auto">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden lg:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="index.html" class="text-gray-600 hover:text-[#FF7F50] px-3 py-2 text-sm font-medium rounded-md transition">Home</a>
+                        <a href="services.html" class="text-gray-600 hover:text-[#FF7F50] px-3 py-2 text-sm font-medium rounded-md transition">Services</a>
+                        <a href="portfolio.html" class="text-gray-600 hover:text-[#FF7F50] px-3 py-2 text-sm font-medium rounded-md transition">Portfolio</a>
+                        <a href="automation.html" class="text-gray-600 hover:text-[#FF7F50] px-3 py-2 text-sm font-medium rounded-md transition">Automations</a>
+                        <a href="blog.html" class="bg-[#F5DEB3] text-[#FF7F50] px-3 py-2 text-sm font-medium rounded-md transition">Blog</a>
+                        <a href="https://calendly.com/yungceo/kk_email-campaign-calls" target="_blank" class="px-6 py-2 bg-[#FF7F50] text-white font-medium rounded-md transition-all duration-300 hover:bg-[#E9967A] shadow-md">Book Consultation</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-[#FF7F50] focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-white w-full px-6 py-4 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="index.html" class="text-gray-600 hover:text-[#FF7F50] px-3 py-2 rounded-md">Home</a>
+                <a href="services.html" class="text-gray-600 hover:text-[#FF7F50] px-3 py-2 rounded-md">Services</a>
+                <a href="portfolio.html" class="text-gray-600 hover:text-[#FF7F50] px-3 py-2 rounded-md">Portfolio</a>
+                <a href="automation.html" class="text-gray-600 hover:text-[#FF7F50] px-3 py-2 rounded-md">Automations</a>
+                <a href="blog.html" class="bg-[#F5DEB3] text-[#FF7F50] px-3 py-2 rounded-md">Blog</a>
+                <a href="https://calendly.com/yungceo/kk_email-campaign-calls" target="_blank"
+                   class="px-6 py-2 bg-[#FF7F50] text-white font-medium rounded-md text-center">
+                    Book Consultation
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+
+    <section class="py-12 bg-[#fffaf0]">
+        <div class="container">
+            <div id="blog-post-content">
+                <p class="text-center text-gray-500">Loading blog post...</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize Supabase client
+            const supabaseUrl = 'https://cxwswtnpmjuftqmaqzae.supabase.co'; // Replace with your Supabase URL
+            const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN4d3N3dG5wbWp1ZnRxbWFxemFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMyNzUzMDgsImV4cCI6MjA1ODg1MTMwOH0.KND-kmT3JEtGL0J-I0XVr2jdNSKB5-JO0m5afEVK-mo'; // Replace with your Supabase anon key
+            const supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+            const blogPostContentDiv = document.getElementById('blog-post-content');
+            const pageTitle = document.getElementById('page-title');
+
+            // Get the blog slug from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const blogSlug = urlParams.get('slug');
+
+            if (!blogSlug) {
+                blogPostContentDiv.innerHTML = '<p class="text-center text-red-500">Blog post slug not provided.</p>';
+                pageTitle.textContent = 'Error | Soar2Win';
+                return;
+            }
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('soar2win_blogs') /* Changed table name */
+                    .select('*') // Fetch all columns for the full content
+                    .eq('slug', blogSlug)
+                    .maybeSingle(); // Expecting a single result or null
+
+                if (error) {
+                    console.error('Error fetching blog post:', error.message);
+                    blogPostContentDiv.innerHTML = `<p class="text-center text-red-500">Error loading blog post: ${error.message}</p>`;
+                    pageTitle.textContent = 'Error | Soar2Win';
+                    return;
+                }
+
+                if (data) {
+                    // Check if data is an array and get the first element
+                    const blogPost = Array.isArray(data) ? data[0] : data;
+
+                    if (blogPost) {
+                        // Display the blog post content
+                        pageTitle.textContent = `${blogPost.title} | Soar2Win`;
+
+                        // Dynamically inject meta tags for SEO
+                        // Meta Description
+                        let metaDesc = document.querySelector('meta[name="description"]');
+                        if (!metaDesc) {
+                            metaDesc = document.createElement('meta');
+                            metaDesc.name = "description";
+                            document.head.appendChild(metaDesc);
+                        }
+                        metaDesc.content = blogPost.meta_description || blogPost.full_post?.introduction || `Learn more about ${blogPost.title} from Soar2Win.`;
+
+                        // Open Graph Tags
+                        const ogTags = [
+                            { property: "og:title", content: blogPost.title || "Soar2Win Blog Post" },
+                            { property: "og:description", content: blogPost.meta_description || blogPost.full_post?.introduction || `Learn more about ${blogPost.title} from Soar2Win.` },
+                            { property: "og:image", content: blogPost.image_url || "https://kkbranding.com/assets/default-blog-thumbnail.jpg" }, // Use a default image if none provided
+                            { property: "og:url", content: window.location.href }
+                        ];
+
+                        ogTags.forEach(tagData => {
+                            let ogTag = document.querySelector(`meta[property="${tagData.property}"]`);
+                            if (!ogTag) {
+                                ogTag = document.createElement('meta');
+                                ogTag.setAttribute("property", tagData.property);
+                                document.head.appendChild(ogTag);
+                            }
+                            ogTag.content = tagData.content;
+                        });
+
+                        // Twitter Card Tag
+                        let twitterCard = document.querySelector('meta[name="twitter:card"]');
+                        if (!twitterCard) {
+                            twitterCard = document.createElement('meta');
+                            twitterCard.name = "twitter:card";
+                            document.head.appendChild(twitterCard);
+                        }
+                        twitterCard.content = "summary_large_image"; // Or "summary" depending on preference
+
+                        // Canonical URL
+                        let canonicalLink = document.querySelector('link[rel="canonical"]');
+                        if (!canonicalLink) {
+                            canonicalLink = document.createElement('link');
+                            canonicalLink.rel = "canonical";
+                            document.head.appendChild(canonicalLink);
+                        }
+                        canonicalLink.href = window.location.href;
+
+
+                        let blogContentHtml = `
+                            <h1 class="text-3xl font-bold text-[#1a202c] mb-4">${blogPost.title}</h1>
+                            <p class="text-[#4a5568] text-sm mb-6">Published on: ${blogPost.created_at ? new Date(blogPost.created_at).toLocaleDateString() : 'N/A'}</p>
+                        `;
+
+                        // Handle full_post based on its type
+                        if (typeof blogPost.full_post === 'object' && blogPost.full_post !== null) {
+                            const fullPost = blogPost.full_post;
+
+                            // Add introduction
+                            if (fullPost.introduction) {
+                                blogContentHtml += `<div class="blog-content"><p>${fullPost.introduction}</p></div>`;
+                            }
+
+                            // Add sections
+                            if (fullPost.sections && Array.isArray(fullPost.sections)) {
+                                fullPost.sections.forEach(section => {
+                                    if (section.heading) {
+                                        blogContentHtml += `<div class="blog-content"><h2>${section.heading}</h2></div>`;
+                                    }
+                                    if (section.content) {
+                                        blogContentHtml += `<div class="blog-content"><p>${section.content}</p></div>`;
+                                    }
+                                });
+                            }
+
+                            // Add conclusion
+                            if (fullPost.conclusion) {
+                                if (fullPost.conclusion.summary) {
+                                    blogContentHtml += `<div class="blog-content"><p>${fullPost.conclusion.summary}</p></div>`;
+                                }
+                                if (fullPost.conclusion.cta) {
+                                    // Basic handling for CTA link format [Text ->](#)
+                                    const ctaMatch = fullPost.conclusion.cta.match(/\[(.*?) →\]\((.*?)\)/);
+                                    if (ctaMatch && ctaMatch[1] && ctaMatch[2]) {
+                                        const ctaText = ctaMatch[1];
+                                        const ctaLink = ctaMatch[2];
+                                        blogContentHtml += `<div class="blog-content mt-6"><a href="${ctaLink}" class="inline-block px-6 py-2 bg-[#FF7F50] text-white font-medium rounded-md transition-all duration-300 hover:bg-[#E9967A] shadow-md">${ctaText}</a></div>`;
+                                    } else {
+                                         blogContentHtml += `<div class="blog-content mt-6"><p>${fullPost.conclusion.cta}</p></div>`;
+                                    }
+                                }
+                            }
+
+                        } else if (blogPost.full_post) {
+                             // Handle old string format for full_post
+                             blogContentHtml += `<div class="blog-content">${blogPost.full_post}</div>`;
+                        } else {
+                             blogContentHtml += `<div class="blog-content"><p>No content available for this post.</p></div>`;
+                        }
+
+                        // Add meta description, tags, keywords, and outline (if they exist)
+
+
+                        if (blogPost.tags && Array.isArray(blogPost.tags) && blogPost.tags.length > 0) {
+                            blogContentHtml += `
+                                <div class="mt-8">
+                                    <h3 class="text-xl font-semibold text-[#1a202c] mb-3">Tags:</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        ${blogPost.tags.map(tag => `<span class="bg-[#F5DEB3] text-[#FF7F50] text-xs font-semibold px-2.5 py-0.5 rounded">${tag}</span>`).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        }
+
+                        if (blogPost.keywords && Array.isArray(blogPost.keywords) && blogPost.keywords.length > 0) {
+                            blogContentHtml += `
+                                <div class="mt-8">
+                                    <h3 class="text-xl font-semibold text-[#1a202c] mb-3">Keywords:</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        ${blogPost.keywords.map(keyword => `<span class="bg-[#F5DEB3] text-[#FF7F50] text-xs font-semibold px-2.5 py-0.5 rounded">${keyword}</span>`).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        }
+
+                         if (blogPost.outline && Array.isArray(blogPost.outline) && blogPost.outline.length > 0) {
+                            blogContentHtml += `
+                                <div class="mt-8">
+                                    <h3 class="text-xl font-semibold text-[#1a202c] mb-3">Outline:</h3>
+                                    <ul class="list-disc list-inside text-[#4a5568]">
+                                        ${blogPost.outline.map(item => `<li>${item}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            `;
+                        }
+
+
+                        blogPostContentDiv.innerHTML = blogContentHtml;
+                        console.log('Blog Content:', blogPost.full_post);
+
+                    } else {
+                         blogPostContentHtml += '<p class="text-center text-gray-500">Blog post data is empty.</p>';
+                         pageTitle.textContent = 'Empty Data | Soar2Win';
+                    }
+                } else {
+                    blogPostContentDiv.innerHTML = '<p class="text-center text-gray-500">Blog post not found.</p>';
+                    pageTitle.textContent = 'Not Found | Soar2Win';
+                }
+
+            } catch (error) {
+                console.error('Error in blog post page:', error);
+                blogPostContentDiv.innerHTML = `<p class="text-center text-red-500">An unexpected error occurred: ${error.message}</p>`;
+                pageTitle.textContent = 'Error | Soar2Win';
+            }
+        });
+    </script>
+
+    <!-- Footer - Replicated from index.html for consistency -->
+    <footer class="bg-gray-900 text-gray-400 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                         <img src="https://iili.io/FeOsrNV.md.png" alt="Soar2Win Logo" class="h-28 w-auto mr-3">
+                        <span class="text-2xl font-bold text-white">Soar2Win</span>
+                    </div>
+                    <p class="mb-6">
+                        High Quality Professional Graphic Design, Web, and Automation Services.
+                    </p>
+                    <div class="flex space-x-4">
+                        <!-- Optional Social Links Here -->
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors" title="GitHub (Placeholder)">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.683-.566.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="services.html#web-design" class="hover:text-white transition-colors">Web Design</a></li>
+                        <li><a href="services.html#graphic-design" class="hover:text-white transition-colors">Graphic Design</a></li>
+                        <li><a href="services.html#branding" class="hover:text-white transition-colors">Branding</a></li>
+                        <li><a href="automation.html" class="hover:text-white transition-colors">Automation</a></li>
+                        <li><a href="services.html#templates" class="hover:text-white transition-colors">DIY Templates</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-6">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="portfolio.html" class="hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="https://calendly.com/yungceo/kk_email-campaign-calls" target="_blank" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm">
+                    &copy; 2025 Soar2Win. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-sm hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-sm hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
