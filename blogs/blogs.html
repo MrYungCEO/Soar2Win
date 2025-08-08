@@ -2,894 +2,291 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Blog Articles</title>
-  <link rel="stylesheet" href="/styles/themes.css">
-  <!-- Font Awesome for icons -->
+  <title>Our Blogs</title>
+  <style>:root {
+  --primary-color: #f97316;
+  --secondary-color: #0f172a;
+  --accent-color: #ec4899;
+  --bg-color: #fefcfb;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --muted-text: #64748b;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --font-family: 'Poppins', sans-serif;
+  --transition: all 0.3s ease;
+}
+
+/* General */
+body {
+  font-family: var(--font-family);
+  background: var(--bg-color);
+  color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--secondary-color);
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  padding: 4rem 0;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+header .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Blog List */
+ul.blog-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+.blog-list li {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.blog-list a {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--secondary-color);
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  transition: var(--transition);
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.blog-list a:hover {
+  color: var(--primary-color);
+}
+
+.blog-date {
+  color: var(--muted-text);
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.blog-excerpt {
+  color: var(--muted-text);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+/* Single Blog Post */
+.blog-post-date {
+  color: var(--muted-text);
+  font-style: italic;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.blog-post-content {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px var(--shadow);
+  margin-bottom: 2rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2.5rem 0;
+  color: var(--muted-text);
+  border-top: 1px solid var(--border-color);
+  margin-top: 4rem;
+  font-size: 0.875rem;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+}
+
+footer a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+footer a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* Responsive Grid */
+@media (min-width: 640px) {
+  ul.blog-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  ul.blog-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* Base Styles - All using CSS variables from themes.css */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      font-family: var(--font-family);
-      color: var(--text-color);
-      background-color: var(--background-color);
-      line-height: var(--line-height);
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Modern Navbar */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background-color: var(--navbar-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: var(--shadow-md);
-      padding: var(--space-md) 0;
-      transition: var(--transition);
-    }
-
-    .navbar-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .navbar-brand {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--navbar-text);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-    }
-
-    .navbar-nav {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .nav-link {
-      color: var(--navbar-text);
-      text-decoration: none;
-      font-weight: 500;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-    }
-
-    .nav-link:hover {
-      opacity: 0.8;
-    }
-
-    .nav-link i {
-      font-size: 0.875rem;
-    }
-
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* Header */
-    .blog-header {
-      padding: var(--space-2xl) 0 var(--space-xl);
-      text-align: center;
-      background-color: rgba(0, 0, 0, 0.2);
-      margin-bottom: var(--space-xl);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .blog-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: var(--gradient-bg);
-      opacity: 0.1;
-      z-index: -1;
-    }
-
-    .header-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .blog-title {
-      font-size: 3rem;
-      margin-bottom: var(--space-md);
-      line-height: 1.2;
-      font-weight: 800;
-      color: var(--primary-color);
-    }
-
-    .blog-description {
-      font-size: 1.25rem;
-      margin-bottom: var(--space-xl);
-      color: var(--text-secondary);
-    }
-
-    /* Blog List */
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-    }
-
-    .blog-card {
-      background-color: var(--card-bg);
-      border-radius: var(--border-radius-md);
-      overflow: hidden;
-      transition: var(--transition);
-      box-shadow: var(--shadow-md);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid var(--border-color);
-    }
-
-    .blog-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .blog-card-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .blog-card-content {
-      padding: 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .blog-card-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: var(--space-sm);
-      line-height: 1.3;
-    }
-
-    .blog-card-title a {
-      color: var(--primary-color);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .blog-card-title a:hover {
-      color: var(--secondary-color);
-    }
-
-    .blog-card-excerpt {
-      margin-bottom: var(--space-md);
-      color: var(--text-secondary);
-      flex: 1;
-    }
-
-    .blog-card-meta {
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      margin-bottom: var(--space-sm);
-      font-size: 0.875rem;
-      color: var(--text-muted);
-    }
-
-    .blog-card-date {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .blog-card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-sm);
-      color: var(--secondary-color);
-      font-weight: 600;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .blog-card-readmore:hover {
-      transform: translateX(3px);
-    }
-
-    /* Featured Section */
-    .featured-section {
-      margin-bottom: 4rem;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: var(--space-xl);
-      position: relative;
-      display: inline-block;
-      color: var(--primary-color);
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: calc(-1 * var(--space-sm));
-      left: 0;
-      width: 50%;
-      height: 3px;
-      background-color: var(--secondary-color);
-      border-radius: var(--border-radius-sm);
-    }
-
-    /* Search and Filter */
-    .search-filter {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .search-box {
-      display: flex;
-      align-items: center;
-      background-color: var(--card-bg);
-      border-radius: var(--border-radius-md);
-      padding: var(--space-sm) var(--space-md);
-      width: 100%;
-      max-width: 400px;
-      border: 1px solid var(--border-color);
-    }
-
-    .search-box input {
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text-color);
-      width: 100%;
-      padding: var(--space-sm);
-      font-family: var(--font-family);
-    }
-
-    .search-box i {
-      color: var(--text-muted);
-    }
-
-    .filter-options {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .filter-select {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--border-radius-md);
-      padding: var(--space-sm) var(--space-md);
-      color: var(--text-color);
-      font-family: var(--font-family);
-      outline: none;
-    }
-
-    .filter-select option {
-      background-color: var(--background-color);
-    }
-
-    /* Pagination */
-    .pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .page-item {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: var(--border-radius-md);
-      background-color: var(--card-bg);
-      color: var(--text-color);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .page-item:hover,
-    .page-item.active {
-      background-color: var(--primary-color);
-    }
-
-    .page-item.disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    /* Footer */
-    .blog-footer {
-      background-color: var(--navbar-bg);
-      padding: var(--space-xl) 0;
-      margin-top: var(--space-2xl);
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-
-    .footer-logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--navbar-text);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-    }
-
-    .footer-nav {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-link {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-link:hover {
-      color: var(--secondary-color);
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .social-link {
-      color: var(--navbar-text);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background-color: var(--card-bg);
-      transition: var(--transition);
-    }
-
-    .social-link:hover {
-      background-color: var(--secondary-color);
-      color: var(--background-color);
-      transform: translateY(-3px);
-    }
-
-    .footer-bottom {
-      margin-top: var(--space-xl);
-      padding-top: var(--space-xl);
-      border-top: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--space-md);
-    }
-
-    .footer-copyright {
-      color: var(--text-muted);
-      font-size: 0.875rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.875rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .blog-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .navbar-container {
-        padding: 0 1rem;
-      }
-      
-      .container {
-        padding: 0 1rem;
-      }
-      
-      .blog-title {
-        font-size: 2.5rem;
-      }
-      
-      .search-filter {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      
-      .search-box {
-        max-width: 100%;
-      }
-      
-      .footer-content,
-      .footer-bottom {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-    }
-  </style>
 </head>
-<body>
-  <!-- Modern Navbar -->
-  <nav class="navbar">
-    <div class="navbar-container">
-      <a href="/" class="navbar-brand">
-        <i class="fas fa-home"></i>
-      </a>
-      <div class="navbar-nav">
-        <a href="/blogs" class="nav-link">
-          <i class="fas fa-book"></i>
-          <span>All Blogs</span>
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Blog Header -->
-  <header class="blog-header">
-    <div class="header-content">
-      <h1 class="blog-title">Our Blog Articles</h1>
-      <p class="blog-description">Discover insights, tutorials, and updates from our team</p>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="container">
-    <!-- Search and Filter -->
-    <div class="search-filter">
-      <div class="search-box">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="Search articles..." id="blog-search">
-      </div>
-      <div class="filter-options">
-        <select class="filter-select" id="category-filter">
-          <option value="all">All Categories</option>
-          <option value="technology">Technology</option>
-          <option value="business">Business</option>
-          <option value="lifestyle">Lifestyle</option>
-        </select>
-        <select class="filter-select" id="sort-filter">
-          <option value="newest">Newest First</option>
-          <option value="oldest">Oldest First</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Featured Section -->
-    <section class="featured-section">
-      <h2 class="section-title">Featured Posts</h2>
-      <div class="blog-grid" id="featured-blogs">
-        <!-- Featured blogs will be inserted here -->
-      </div>
-    </section>
-
-    <!-- All Blogs Section -->
-    <section>
-      <h2 class="section-title">All Articles</h2>
-      <div class="blog-grid" id="all-blogs">
-        <!-- Blog list will be inserted here -->
-      </div>
-    </section>
-
-    <!-- Pagination -->
-    <div class="pagination">
-      <a href="#" class="page-item disabled"><i class="fas fa-chevron-left"></i></a>
-      <a href="#" class="page-item active">1</a>
-      <a href="#" class="page-item">2</a>
-      <a href="#" class="page-item">3</a>
-      <a href="#" class="page-item"><i class="fas fa-chevron-right"></i></a>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="blog-footer">
-    <div class="container">
-      <div class="footer-content">
-        <a href="/" class="footer-logo">
-          <i class="fas fa-cloud"></i>
-        </a>
-        <div class="footer-nav">
-          <a href="/" class="footer-link">Home</a>
-          <a href="/blogs" class="footer-link">Blogs</a>
-          <a href="/about" class="footer-link">About</a>
-          <a href="/contact" class="footer-link">Contact</a>
-        </div>
-        <div class="footer-social">
-          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p class="footer-copyright">&copy; 2025 All rights reserved.</p>
-        <div class="footer-links">
-          <a href="#" class="footer-link">Privacy Policy</a>
-          <a href="#" class="footer-link">Terms of Service</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
+<body class="blog-index-theme">
+  
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Get RGB values from CSS variables for use in styles
-      const style = getComputedStyle(document.documentElement);
-      const primaryColor = style.getPropertyValue('--primary-color').trim();
-      const textColor = style.getPropertyValue('--text-color').trim();
-      const secondaryColor = style.getPropertyValue('--secondary-color').trim();
-      
-      // Convert hex to RGB
-      const hexToRgb = (hex) => {
-        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-        hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
-        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result ? 
-          parseInt(result[1], 16) + ', ' + parseInt(result[2], 16) + ', ' + parseInt(result[3], 16) :
-          '0, 0, 0';
-      };
-      
-      // Set RGB variables
-      document.documentElement.style.setProperty('--primary-color-rgb', hexToRgb(primaryColor));
-      document.documentElement.style.setProperty('--text-color-rgb', hexToRgb(textColor));
-      document.documentElement.style.setProperty('--secondary-color-rgb', hexToRgb(secondaryColor));
-      
-      // Blog loading and search functionality
-      const searchInput = document.getElementById('blog-search');
-      const featuredContainer = document.getElementById('featured-blogs');
-      const allBlogsContainer = document.getElementById('all-blogs');
-      
-      // Create loading indicator
-      const loadingIndicator = document.createElement('div');
-      loadingIndicator.className = 'loading-indicator';
-      loadingIndicator.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading blogs...';
-      loadingIndicator.style.textAlign = 'center';
-      loadingIndicator.style.padding = '2rem';
-      loadingIndicator.style.color = 'var(--text-secondary)';
-      
-      // Create no results message
-      const noResultsMessage = document.createElement('div');
-      noResultsMessage.id = 'no-results-message';
-      noResultsMessage.className = 'no-results';
-      noResultsMessage.innerHTML = '<i class="fas fa-search"></i> No blogs found matching your search.';
-      noResultsMessage.style.textAlign = 'center';
-      noResultsMessage.style.padding = '2rem';
-      noResultsMessage.style.color = 'var(--text-secondary)';
-      noResultsMessage.style.display = 'none';
-      
-      // Check if blog containers are empty and load blogs if needed
-      function checkAndLoadBlogs() {
-        if (featuredContainer && allBlogsContainer) {
-          // If either container is empty or contains only the default message, load blogs
-          if (featuredContainer.children.length === 0 || 
-              (allBlogsContainer.children.length === 0 || 
-               allBlogsContainer.textContent.includes('No blog posts found'))) {
-            
-            // Add loading indicator
-            if (allBlogsContainer.children.length > 0) {
-              allBlogsContainer.innerHTML = '';
-            }
-            allBlogsContainer.appendChild(loadingIndicator.cloneNode(true));
-            
-            // Load blogs from directory
-            loadBlogsFromDirectory();
-          }
-        }
-      }
-      
-      // Load blogs from the /blogs/ directory
-      async function loadBlogsFromDirectory() {
-        try {
-          // Fetch the blogs directory
-          const response = await fetch('/blogs/');
-          if (!response.ok) throw new Error('Failed to load blogs directory');
-          
-          const html = await response.text();
-          
-          // Create a temporary element to parse the HTML
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          
-          // Find all links to HTML files
-          const links = Array.from(doc.querySelectorAll('a'))
-            .filter(a => a.href.endsWith('.html') && !a.href.includes('blogs-index.html'));
-          
-          if (links.length === 0) {
-            showError('No blog posts found. Create your first blog post to get started!');
-            return;
-          }
-          
-          // Process each blog file
-          const blogPromises = links.map(link => processBlogFile(link.href));
-          const blogs = await Promise.all(blogPromises);
-          
-          // Sort blogs by date (newest first)
-          const sortedBlogs = blogs
-            .filter(blog => blog) // Remove any null results
-            .sort((a, b) => new Date(b.date) - new Date(a.date));
-          
-          // Remove loading indicator
-          const loadingElements = document.querySelectorAll('.loading-indicator');
-          loadingElements.forEach(el => {
-            if (el.parentNode) {
-              el.parentNode.removeChild(el);
-            }
-          });
-          
-          // Display blogs
-          displayBlogs(sortedBlogs);
-          
-          // Setup search functionality
-          setupSearch();
-          
-        } catch (error) {
-          showError('Error loading blogs: ' + error.message);
-        }
-      }
-      
-      // Process a single blog file to extract metadata
-      async function processBlogFile(url) {
-        try {
-          const response = await fetch(url);
-          const html = await response.text();
-          
-          // Create a temporary element to parse the HTML
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          
-          // Extract blog metadata
-          const title = doc.querySelector('title')?.textContent || 'Untitled Blog';
-          const metaDesc = doc.querySelector('meta[name="description"]');
-          const description = metaDesc ? metaDesc.getAttribute('content') : '';
-          
-          // Try to find the main content and extract first paragraph as excerpt
-          const mainContent = doc.querySelector('main') || doc.querySelector('article') || doc.body;
-          const paragraphs = mainContent.querySelectorAll('p');
-          let excerpt = '';
-          
-          if (paragraphs.length > 0) {
-            excerpt = paragraphs[0].textContent.trim();
-            if (excerpt.length > 150) {
-              excerpt = excerpt.substring(0, 150) + '...';
-            }
-          } else if (description) {
-            excerpt = description;
-          } else {
-            excerpt = 'Click to read this blog post...';
-          }
-          
-          // Try to find date information
-          const dateElement = doc.querySelector('time') || 
-                             doc.querySelector('.date') || 
-                             doc.querySelector('.publish-date') || 
-                             doc.querySelector('[datetime]');
-          
-          let date = new Date().toISOString();
-          if (dateElement) {
-            if (dateElement.hasAttribute('datetime')) {
-              date = dateElement.getAttribute('datetime');
-            } else {
-              date = dateElement.textContent;
-            }
-          }
-          
-          // Check if this is a featured post
-          const isFeatured = html.toLowerCase().includes('featured') || 
-                           title.toLowerCase().includes('featured');
-          
-          // Get the relative URL path
-          const urlPath = new URL(url).pathname;
-          
-          return {
-            title,
-            excerpt,
-            date,
-            url: urlPath,
-            featured: isFeatured
-          };
-          
-        } catch (error) {
-          console.error('Error processing blog file:', url, error);
-          return null;
-        }
-      }
-      
-      // Display blogs in their respective containers
-      function displayBlogs(blogs) {
-        if (!blogs || blogs.length === 0) {
-          showError('No blog posts found. Create your first blog post to get started!');
-          return;
-        }
-        
-        // Clear containers
-        if (featuredContainer) featuredContainer.innerHTML = '';
-        if (allBlogsContainer) allBlogsContainer.innerHTML = '';
-        
-        // Add no results message to all blogs container (hidden initially)
-        if (allBlogsContainer) {
-          allBlogsContainer.appendChild(noResultsMessage);
-        }
-        
-        // Filter featured blogs
-        const featuredBlogs = blogs.filter(blog => blog.featured);
-        
-        // Display featured blogs
-        if (featuredContainer) {
-          if (featuredBlogs.length > 0) {
-            featuredBlogs.forEach(blog => {
-              featuredContainer.appendChild(createBlogCard(blog, true));
-            });
-          } else if (blogs.length > 0) {
-            // If no featured blogs, use the first blog as featured
-            featuredContainer.appendChild(createBlogCard(blogs[0], true));
-          }
-        }
-        
-        // Display all blogs
-        if (allBlogsContainer) {
-          blogs.forEach(blog => {
-            allBlogsContainer.appendChild(createBlogCard(blog));
-          });
-        }
-      }
-      
-      // Create a blog card element
-      function createBlogCard(blog, featured = false) {
-        const card = document.createElement('div');
-        card.className = 'blog-card';
-        card.setAttribute('data-title', blog.title.toLowerCase());
-        card.setAttribute('data-excerpt', blog.excerpt.toLowerCase());
-        
-        // Format date
-        let formattedDate;
-        try {
-          const dateObj = new Date(blog.date);
-          formattedDate = dateObj.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          });
-        } catch (e) {
-          formattedDate = blog.date;
-        }
-        
-        card.innerHTML = `
-          <div class="blog-card-content">
-            <div class="blog-card-meta">
-              <span class="blog-card-date">
-                <i class="far fa-calendar"></i> ${formattedDate}
-              </span>
-            </div>
-            <h3 class="blog-card-title">
-              <a href="${blog.url}">${blog.title}</a>
-            </h3>
-            <p class="blog-card-excerpt">${blog.excerpt}</p>
-            <a href="${blog.url}" class="blog-card-link">
-              Read More <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        `;
-        
-        return card;
-      }
-      
-      // Show error message
-      function showError(message) {
-        if (allBlogsContainer) {
-          // Remove loading indicator if present
-          const loadingElements = document.querySelectorAll('.loading-indicator');
-          loadingElements.forEach(el => {
-            if (el.parentNode) {
-              el.parentNode.removeChild(el);
-            }
-          });
-          
-          allBlogsContainer.innerHTML = `
-            <div class="error-message" style="text-align: center; padding: 2rem; color: var(--text-secondary);">
-              <i class="fas fa-exclamation-circle"></i> ${message}
-            </div>
-          `;
-        }
-      }
-      
-      // Setup search functionality
-      function setupSearch() {
-        if (searchInput) {
-          searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const blogCards = document.querySelectorAll('.blog-card');
-            let hasResults = false;
-            
-            blogCards.forEach(card => {
-              const title = card.getAttribute('data-title');
-              const excerpt = card.getAttribute('data-excerpt');
-              
-              if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
-                card.style.display = 'flex';
-                hasResults = true;
-              } else {
-                card.style.display = 'none';
-              }
-            });
-            
-            // Show/hide no results message
-            if (noResultsMessage) {
-              noResultsMessage.style.display = hasResults ? 'none' : 'block';
-            }
-          });
-        }
-        
-        // Setup category filter
-        const categoryFilter = document.getElementById('category-filter');
-        if (categoryFilter) {
-          categoryFilter.addEventListener('change', function() {
-            // Implementation for category filtering would go here
-            // For now, just trigger search filter
-            if (searchInput) {
-              searchInput.dispatchEvent(new Event('input'));
-            }
-          });
-        }
-        
-        // Setup sort filter
-        const sortFilter = document.getElementById('sort-filter');
-        if (sortFilter) {
-          sortFilter.addEventListener('change', function() {
-            // Implementation for sorting would go here
-            // For now, just trigger search filter
-            if (searchInput) {
-              searchInput.dispatchEvent(new Event('input'));
-            }
-          });
-        }
-      }
-      
-      // Initialize - check if blogs need to be loaded
-      checkAndLoadBlogs();
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
     });
   </script>
+</body>
+</html>
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="blog-index-theme">
+  <!-- Navigation -->
+    <nav class="navbar bg-white bg-opacity-70 backdrop-blur-md fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex items-center">
+                        <img src="https://iili.io/FeOsrNV.md.png" alt="FewCeZF.md.png" alt="Soar2WIN Leadership & Life Coaching" class="h-28">
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="/index.html" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="/index.html/#about" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">About</a>
+                    <a href="/index.html/#services" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Services</a>
+                    <a href="/index.html/#why" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Why Coaching</a>
+                    <a href="/index.html/#testimonials" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Testimonials</a>
+                    <a href="/index.html/#contact" class="nav-link text-gray-700 hover:text-[#E9967A] px-3 py-2 text-sm font-medium">Contact</a>
+                    <div class="flex items-center space-x-4 mr-4">
+                        <a href="https://www.facebook.com/Soar2Win" target="_blank" class="text-gray-600 hover:text-[#E9967A]" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/reneejacksonsmith/" target="_blank" class="text-gray-600 hover:text-[#E9967A]" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/soar2win/" target="_blank" class="text-gray-600 hover:text-[#E9967A]" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <a href="/index.html/#book" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:shadow-lg transition duration-300 open-discovery-call">
+                        Book a Call
+                    </a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">About</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">Services</a>
+                <a href="#why" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">Why Coaching</a>
+                <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">Testimonials</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0056b3] hover:bg-gray-50">Contact</a>
+                <a href="#book" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-[#0056b3] hover:bg-[#007bff]">
+                    Book a Call
+                </a>
+            </div>
+        </div>
+    </nav>
+  <header class="relative overflow-hidden py-24 bg-gradient-to-r from-orange-500 to-amber-500">
+    <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"></div>
+    <div class="container relative z-10">
+      <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tight text-center">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-amber-100">
+          Latest Blogs
+        </span>
+      </h1>
+      <p class="mt-4 text-lg text-white/80 text-center max-w-2xl mx-auto">
+        Insights and strategies for leadership and personal growth
+      </p>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
+  </header>
+  <main class="container">
+    <ul class="blog-list">
+      <!-- BLOG LIST -->
+      <li class="blog-card hover:shadow-lg transition-all duration-300">
+        <div class="card-content">
+          <h3 class="card-title"><a href="the-supervisors-guide-to-holistic-life-development.html" class="text-primary hover:text-accent transition-colors">The Supervisor's Guide to Holistic Life Development</a></h3>
+          <p class="card-date text-muted"></p>
+          <div class="card-excerpt"><p class="blog-excerpt">A comprehensive guide for supervisors on life development. Learn to cultivate resilience, continuous learning, and well-being for your team and yourse...</p></div>
+          <a href="the-supervisors-guide-to-holistic-life-development.html" class="card-link">Read More →</a>
+        </div>
+      </li>
+    
+     
+    
+    </ul>
+  </main>
+  <footer class="container">
+    <p>&copy; 2025 Soar2WinBlogs</p>
+  </footer>
 </body>
 </html>
