@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MonsoonBlogs - All Articles</title>
+  <title>All Blog Articles</title>
   <link rel="stylesheet" href="/styles/themes.css">
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -39,7 +39,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background-color: rgba(var(--primary-color-rgb, '107, 33, 168'), 0.95);
+      background-color: var(--navbar-bg);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       box-shadow: var(--shadow-md);
@@ -468,7 +468,6 @@
     <div class="navbar-container">
       <a href="/" class="navbar-brand">
         <i class="fas fa-home"></i>
-        <span>MonsoonBlogs</span>
       </a>
       <div class="navbar-nav">
         <a href="/blogs" class="nav-link">
@@ -541,7 +540,6 @@
       <div class="footer-content">
         <a href="/" class="footer-logo">
           <i class="fas fa-cloud"></i>
-          <span>MonsoonBlogs</span>
         </a>
         <div class="footer-nav">
           <a href="/" class="footer-link">Home</a>
@@ -557,7 +555,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copyright">&copy; 2025 MonsoonBlogs. All rights reserved.</p>
+        <p class="footer-copyright">&copy; 2025 All rights reserved.</p>
         <div class="footer-links">
           <a href="#" class="footer-link">Privacy Policy</a>
           <a href="#" class="footer-link">Terms of Service</a>
@@ -589,10 +587,16 @@
       document.documentElement.style.setProperty('--text-color-rgb', hexToRgb(textColor));
       document.documentElement.style.setProperty('--secondary-color-rgb', hexToRgb(secondaryColor));
       
-      // Populate blog lists (this would normally be done with server-side rendering)
+      // Populate blog lists (with client-side fallback)
       const blogData = window.blogData || [];
       const featuredContainer = document.getElementById('featured-blogs');
       const allBlogsContainer = document.getElementById('all-blogs');
+      
+      // Client-side fallback to load blogs if not populated by server
+      if ((featuredContainer && featuredContainer.children.length === 0) || 
+          (allBlogsContainer && allBlogsContainer.children.length === 0)) {
+        loadBlogsFromDirectory();
+      }
       
       // Search functionality
       const searchInput = document.getElementById('blog-search');
@@ -620,8 +624,138 @@
       }
       
       function filterBlogs(searchTerm = '') {
-        // This would be implemented to filter the blog list
-        console.log('Filtering blogs with search term:', searchTerm);
+        // Filter the blog list based on search term
+        const blogCards = document.querySelectorAll('.blog-card');
+        let visibleCount = 0;
+        
+        blogCards.forEach(card => {
+          const title = card.querySelector('.blog-card-title').textContent.toLowerCase();
+          const excerpt = card.querySelector('.blog-card-excerpt')?.textContent.toLowerCase() || '';
+          const shouldShow = title.includes(searchTerm) || excerpt.includes(searchTerm);
+          
+          card.style.display = shouldShow ? 'flex' : 'none';
+          if (shouldShow) visibleCount++;
+        });
+        
+        // Show message if no results
+        const noResultsMsg = document.getElementById('no-results-message');
+        if (noResultsMsg) {
+          noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+      }
+      
+      // Function to load blogs from directory
+      async function loadBlogsFromDirectory() {
+        try {
+          // Show loading state
+          if (featuredContainer) featuredContainer.innerHTML = '<div class="loading-spinner">Loading featured blogs...</div>';
+          if (allBlogsContainer) allBlogsContainer.innerHTML = '<div class="loading-spinner">Loading blogs...</div>';
+          
+          // Fetch the blogs directory listing
+          const response = await fetch('/blogs/');
+          if (!response.ok) throw new Error('Failed to load blogs directory');
+          
+          const text = await response.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(text, 'text/html');
+          
+          // Extract links to HTML files (excluding blogs.html)
+          const blogLinks = Array.from(doc.querySelectorAll('a'))
+            .filter(a => a.href.endsWith('.html') && !a.href.includes('blogs.html'))
+            .map(a => ({ 
+              url: a.href,
+              filename: a.textContent.trim() 
+            }));
+          
+          // Clear loading state
+          if (featuredContainer) featuredContainer.innerHTML = '';
+          if (allBlogsContainer) allBlogsContainer.innerHTML = '';
+          
+          // If no blogs found
+          if (blogLinks.length === 0) {
+            const message = '<div class="no-blogs-message">No blog posts found. Create your first blog post to get started!</div>';
+            if (allBlogsContainer) allBlogsContainer.innerHTML = message;
+            return;
+          }
+          
+          // Process each blog to extract metadata and create cards
+          const blogPromises = blogLinks.map(async blog => {
+            try {
+              const blogResponse = await fetch(blog.url);
+              if (!blogResponse.ok) return null;
+              
+              const blogHtml = await blogResponse.text();
+              const blogDoc = parser.parseFromString(blogHtml, 'text/html');
+              
+              // Extract blog metadata
+              const title = blogDoc.querySelector('title')?.textContent || blog.filename.replace('.html', '');
+              const description = blogDoc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+              const date = blogDoc.querySelector('.publish-date')?.textContent || 'No date';
+              const isFeatured = blogHtml.includes('data-featured="true"');
+              
+              return {
+                url: blog.url,
+                title,
+                description,
+                date,
+                isFeatured
+              };
+            } catch (err) {
+              console.error(`Error processing blog ${blog.url}:`, err);
+              return null;
+            }
+          });
+          
+          // Wait for all blog processing to complete
+          const blogs = (await Promise.all(blogPromises)).filter(blog => blog !== null);
+          
+          // Sort blogs by date (newest first)
+          blogs.sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return isNaN(dateA) || isNaN(dateB) ? 0 : dateB - dateA;
+          });
+          
+          // Create HTML for blog cards
+          const createBlogCard = (blog) => {
+            return `
+              <div class="blog-card">
+                <div class="blog-card-content">
+                  <h3 class="blog-card-title"><a href="${blog.url}">${blog.title}</a></h3>
+                  <div class="blog-card-meta">
+                    <span class="blog-card-date">${blog.date}</span>
+                  </div>
+                  <p class="blog-card-excerpt">${blog.description.substring(0, 150)}${blog.description.length > 150 ? '...' : ''}</p>
+                  <a href="${blog.url}" class="blog-card-link">Read More</a>
+                </div>
+              </div>
+            `;
+          };
+          
+          // Populate featured blogs
+          const featuredBlogs = blogs.filter(blog => blog.isFeatured);
+          if (featuredContainer && featuredBlogs.length > 0) {
+            featuredContainer.innerHTML = featuredBlogs.map(createBlogCard).join('');
+          } else if (featuredContainer) {
+            // If no featured blogs, hide the section
+            const featuredSection = featuredContainer.closest('.featured-section');
+            if (featuredSection) featuredSection.style.display = 'none';
+          }
+          
+          // Populate all blogs
+          if (allBlogsContainer) {
+            allBlogsContainer.innerHTML = blogs.map(createBlogCard).join('');
+            // Add no results message (hidden by default)
+            allBlogsContainer.insertAdjacentHTML('afterend', '<div id="no-results-message" style="display:none;text-align:center;margin:2rem 0;">No blogs match your search criteria.</div>');
+          }
+          
+          console.log(`Loaded ${blogs.length} blogs (${featuredBlogs.length} featured)`);          
+        } catch (error) {
+          console.error('Error loading blogs:', error);
+          const errorMessage = `<div class="error-message">Failed to load blogs: ${error.message}</div>`;
+          if (featuredContainer) featuredContainer.innerHTML = errorMessage;
+          if (allBlogsContainer) allBlogsContainer.innerHTML = errorMessage;
+        }
       }
     });
   </script>
